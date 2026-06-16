@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import { LINKS } from "../data/links";
+import { DEBUT_EP, DISCOGRAPHY, IMAGES, SINGLES } from "../data/content";
 import {
   SpotifyIcon,
   AppleMusicIcon,
@@ -24,15 +25,6 @@ const PLATFORMS = [
   { name: "Tidal", icon: TidalIcon, href: LINKS.tidal },
 ];
 
-const DISCOGRAPHY = [
-  { title: "Golden Vanity", year: "2026", type: "Album" },
-  { title: "Velvet Hour", year: "2025", type: "Single" },
-  { title: "Bombay Nights", year: "2025", type: "EP" },
-  { title: "Lilac Room", year: "2024", type: "Single" },
-  { title: "Vanity Mirror", year: "2024", type: "EP" },
-  { title: "Starlight Sari", year: "2023", type: "Single" },
-];
-
 function PlatformBadge({ name, icon: Icon, href }) {
   return (
     <a
@@ -47,27 +39,21 @@ function PlatformBadge({ name, icon: Icon, href }) {
   );
 }
 
-function EmbedPlaceholder({ label }) {
-  return (
-    <div className="flex aspect-[4/1] min-h-[152px] w-full items-center justify-center rounded-lg bg-ink">
-      <p className="font-body text-sm text-ivory/40">
-        {label} embed placeholder — replace with iframe
-      </p>
-    </div>
-  );
-}
-
-function AlbumCard({ title, year, type }) {
-  return (
-    <motion.article
-      className="group overflow-hidden rounded border border-ink/10 bg-white transition-colors duration-200 hover:border-silver"
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
-    >
-      <div className="aspect-square bg-ivory/50">
-        <div className="flex h-full items-center justify-center">
-          <span className="font-script text-3xl text-ink/20">{title[0]}</span>
-        </div>
+function ReleaseCard({ title, year, type, image, href }) {
+  const inner = (
+  <>
+      <div className="aspect-square overflow-hidden bg-ink/5">
+        {image ? (
+          <img
+            src={image}
+            alt={`${title} cover`}
+            className="photo-bw h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <span className="font-display text-3xl text-ink/15">{title[0]}</span>
+          </div>
+        )}
       </div>
       <div className="border-t border-ink/10 p-4 group-hover:border-silver">
         <h3 className="font-display text-base text-ink">{title}</h3>
@@ -75,6 +61,31 @@ function AlbumCard({ title, year, type }) {
           {year} · {type}
         </p>
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block overflow-hidden rounded border border-ink/10 bg-white transition-colors duration-200 hover:border-silver"
+        whileHover={{ y: -4 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
+        {inner}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.article
+      className="group overflow-hidden rounded border border-ink/10 bg-white transition-colors duration-200 hover:border-silver"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+    >
+      {inner}
     </motion.article>
   );
 }
@@ -84,12 +95,12 @@ export default function Music() {
     <div className="bg-white px-6 py-16 md:py-24">
       <Seo
         title="Music"
-        description="Stream Anna Viola on Spotify, Apple Music, and more. Explore the full discography."
+        description="Stream Anna Viola's debut EP Silver Secrets. Singles on Spotify, Apple Music, and more."
         path="/music"
       />
       <div className="mx-auto max-w-6xl">
         <motion.h1
-          className="font-display text-5xl italic text-ink md:text-6xl lg:text-7xl"
+          className="font-display text-5xl uppercase tracking-wide text-ink md:text-6xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -98,24 +109,65 @@ export default function Music() {
         </motion.h1>
 
         <motion.section className="mt-14" {...sectionReveal}>
-          <h2 className="sr-only">Streaming platforms</h2>
-          <div className="flex flex-wrap gap-3">
-            {PLATFORMS.map((platform) => (
-              <PlatformBadge key={platform.name} {...platform} />
-            ))}
-          </div>
-
-          <div className="mt-10 space-y-6">
-            <EmbedPlaceholder label="Spotify" />
-            <EmbedPlaceholder label="Apple Music" />
+          <div className="film-grain overflow-hidden rounded border border-ink/10 bg-ink">
+            <img
+              src={IMAGES.hero}
+              alt=""
+              className="photo-bw h-48 w-full object-cover object-top opacity-60 md:h-64"
+              aria-hidden="true"
+            />
+            <div className="p-8 md:p-12">
+            <p className="font-body text-[11px] tracking-[0.3em] text-white/40 uppercase">
+              debut EP
+            </p>
+            <h2 className="mt-2 font-display text-3xl uppercase tracking-wide text-white md:text-4xl">
+              {DEBUT_EP.title}
+            </h2>
+            <p className="mt-4 max-w-xl font-body text-sm leading-relaxed text-white/55">
+              {DEBUT_EP.description}
+            </p>
+            <a
+              href={LINKS.silverSecrets}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-block border border-white bg-white px-8 py-3 font-body text-[12px] tracking-[0.15em] text-ink uppercase transition-colors duration-300 hover:bg-transparent hover:text-white"
+            >
+              stream on push.fm
+            </a>
+            </div>
           </div>
         </motion.section>
 
         <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="font-display text-2xl text-ink md:text-3xl">discography</h2>
+          <h2 className="font-display text-2xl uppercase tracking-wide text-ink md:text-3xl">
+            singles
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {SINGLES.map((release) => (
+              <ReleaseCard key={release.title} {...release} href={LINKS.silverSecrets} />
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section className="mt-20" {...sectionReveal}>
+          <h2 className="sr-only">Streaming platforms</h2>
+          <p className="font-body text-[11px] tracking-[0.3em] text-ink/40 uppercase">
+            stream everywhere
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            {PLATFORMS.map((platform) => (
+              <PlatformBadge key={platform.name} {...platform} />
+            ))}
+          </div>
+        </motion.section>
+
+        <motion.section className="mt-20" {...sectionReveal}>
+          <h2 className="font-display text-2xl uppercase tracking-wide text-ink md:text-3xl">
+            discography
+          </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {DISCOGRAPHY.map((release) => (
-              <AlbumCard key={release.title} {...release} />
+              <ReleaseCard key={release.title} {...release} />
             ))}
           </div>
         </motion.section>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { LINKS } from "../data/links";
 
 const SITE_URL = "https://annaviola.com";
-const DEFAULT_IMAGE = `${SITE_URL}/images/hero.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/images/silver-secrets-cover.png`;
 
 function setMeta(attr, key, content) {
   if (!content) return;
@@ -76,13 +76,14 @@ export function ArtistJsonLd() {
       url: SITE_URL,
       genre: ["Pop"],
       description:
-        "Pop artist — glamour, glitter, and cinematic pop.",
+        "Vancouver-based pop artist. Debut EP Silver Secrets — poetry, vulnerability, and glitter.",
       sameAs: [
         LINKS.linktree,
         LINKS.instagram,
         LINKS.spotify,
         LINKS.youtube,
         LINKS.tiktok,
+        LINKS.silverSecrets,
       ],
     });
   }, []);

@@ -14,6 +14,7 @@ import {
   SpinnerIcon,
 } from "../components/icons";
 import { LINKS, HANDLE } from "../data/links";
+import { ARTIST } from "../data/content";
 
 const sectionReveal = {
   initial: { opacity: 0, y: 40 },
@@ -30,6 +31,7 @@ const SOCIALS = [
 ];
 
 const STREAMING = [
+  { name: "Silver Secrets", icon: SpotifyIcon, href: LINKS.silverSecrets },
   { name: "Spotify", icon: SpotifyIcon, href: LINKS.spotify },
   { name: "Apple Music", icon: AppleMusicIcon, href: LINKS.appleMusic },
   { name: "YouTube Music", icon: YouTubeMusicIcon, href: LINKS.youtubeMusic },
@@ -170,7 +172,7 @@ export default function Connect() {
     <div className="bg-ink px-6 py-16 text-ivory md:py-24">
       <Seo
         title="Connect"
-        description="Follow Anna Viola on social media, stream her music, and join the newsletter."
+        description="Follow Anna Viola — stream Silver Secrets, join the newsletter, and connect on social."
         path="/connect"
       />
       <div className="mx-auto max-w-6xl">
@@ -197,7 +199,7 @@ export default function Connect() {
         <motion.section className="mt-20" {...sectionReveal}>
           <NewsletterForm />
           <p className="mt-10 text-center font-body text-sm text-ivory/70">
-            For bookings &amp; press:{" "}
+            {ARTIST.location} · For bookings &amp; press:{" "}
             <a
               href="mailto:hello@annaviola.com"
               className="text-ivory/90 underline decoration-white/20 underline-offset-2 transition-colors hover:text-silver"

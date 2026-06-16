@@ -3,7 +3,7 @@ import { useMemo } from "react";
 export default function GlitterOverlay() {
   const specks = useMemo(
     () =>
-      Array.from({ length: 48 }, (_, i) => ({
+      Array.from({ length: 64 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
@@ -33,7 +33,7 @@ export default function GlitterOverlay() {
             opacity: s.opacity,
             animationDuration: `${s.duration}s`,
             animationDelay: `${s.delay}s`,
-            boxShadow: "0 0 4px rgba(255,255,255,0.8)",
+            boxShadow: "0 0 6px rgba(255,255,255,0.85)",
           }}
         />
       ))}

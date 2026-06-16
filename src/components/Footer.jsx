@@ -22,9 +22,9 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col items-center gap-10 text-center md:grid md:grid-cols-3 md:items-start md:gap-8 md:text-left">
           <div>
-            <p className="font-script text-3xl">annaviolaa</p>
+            <p className="font-script text-3xl">anna viola</p>
             <p className="mt-2 font-body text-sm tracking-wide text-ivory/50">
-              pop · glamour · glitter
+              Vancouver · Silver Secrets
             </p>
             <a
               href={LINKS.linktree}

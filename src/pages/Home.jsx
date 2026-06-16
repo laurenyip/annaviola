@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import VanityMirrorModal from "../components/easter-eggs/VanityMirrorModal";
 import { LINKS } from "../data/links";
+import { ARTIST, BIO, DEBUT_EP, IMAGES } from "../data/content";
+
 const sectionReveal = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
@@ -10,21 +12,15 @@ const sectionReveal = {
   transition: { duration: 0.7, ease: "easeOut" },
 };
 
-const TRACKS = [
-  { number: "01", title: "Velvet Hour" },
-  { number: "02", title: "Midnight in Bombay" },
-  { number: "03", title: "Golden Vanity" },
-];
-
 function GlitterParticles() {
   const particles = useMemo(
     () =>
-      Array.from({ length: 24 }, (_, i) => ({
+      Array.from({ length: 32 }, (_, i) => ({
         id: i,
         left: `${8 + Math.random() * 84}%`,
         top: `${10 + Math.random() * 80}%`,
         size: 2 + Math.floor(Math.random() * 5),
-        color: Math.random() > 0.4 ? "#FFFFFF" : "#D4D4D4",
+        color: Math.random() > 0.35 ? "#FFFFFF" : "#D4D4D4",
         duration: 4 + Math.random() * 4,
         delay: Math.random() * 3,
         reverse: i % 2 === 0,
@@ -44,8 +40,8 @@ function GlitterParticles() {
             width: p.size,
             height: p.size,
             backgroundColor: p.color,
-            opacity: 0.4 + Math.random() * 0.5,
-            boxShadow: "0 0 6px rgba(255,255,255,0.6)",
+            opacity: 0.35 + Math.random() * 0.55,
+            boxShadow: "0 0 8px rgba(255,255,255,0.75)",
             animationDuration: `${p.duration}s`,
             animationDelay: `${p.delay}s`,
           }}
@@ -87,45 +83,65 @@ function HeroSection() {
   const [mirrorOpen, setMirrorOpen] = useState(false);
 
   return (
-    <section className="relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden bg-ink pt-16">      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/images/hero.jpg)" }}
+    <section className="film-grain relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden bg-ink pt-16">
+      <div
+        className="photo-bw absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${IMAGES.hero})` }}
         role="img"
-        aria-label="Anna Viola hero portrait"
+        aria-label="Anna Viola"
       />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(to bottom, #0D0D0D 0%, transparent 40%, transparent 70%, #0D0D0D 100%)",
+            "linear-gradient(to bottom, #0A0A0A 0%, transparent 45%, transparent 65%, #0A0A0A 100%)",
         }}
       />
 
       <GlitterParticles />
 
       <div className="relative z-10 px-6 text-center">
+        <motion.p
+          className="font-body text-[11px] tracking-[0.35em] text-white/50 uppercase"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {ARTIST.location}
+        </motion.p>
         <motion.h1
-          className="font-display italic text-ivory"
-          style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
+          className="text-glow mt-4 font-display uppercase tracking-[0.08em] text-white"
+          style={{ fontSize: "clamp(48px, 7vw, 88px)" }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          transition={{ duration: 0.9, ease: "easeOut", delay: 0.05 }}
         >
-          annaviolaa
+          {ARTIST.name}
         </motion.h1>
         <motion.p
-          className="mt-4 font-body text-[13px] tracking-[0.2em] text-ivory/60"
+          className="mt-5 font-body text-[13px] tracking-[0.25em] text-white/60 uppercase"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
         >
-          debut album out now
+          {DEBUT_EP.title} — debut EP out now
         </motion.p>
+        <motion.a
+          href={LINKS.silverSecrets}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-block border border-white/50 px-8 py-3 font-body text-[12px] tracking-[0.2em] text-white uppercase transition-colors duration-300 hover:bg-white hover:text-ink"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
+        >
+          stream singles
+        </motion.a>
       </div>
 
       <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 animate-scroll-bounce">
-        <div className="h-10 w-px bg-ivory/40" />
-        <span className="font-body text-[11px] tracking-[0.2em] text-ivory/40 uppercase">
+        <div className="h-10 w-px bg-white/30" />
+        <span className="font-body text-[11px] tracking-[0.2em] text-white/30 uppercase">
           scroll
         </span>
       </div>
@@ -141,43 +157,35 @@ function HeroSection() {
     </section>
   );
 }
+
 function ArtistIntro() {
   return (
-    <motion.section
-      className="bg-white px-6 py-20 md:py-28"
-      {...sectionReveal}
-    >
+    <motion.section className="bg-white px-6 py-20 md:py-28" {...sectionReveal}>
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
-        <div>
-          <h2 className="font-script text-[48px] leading-none text-ink">about</h2>
+        <div className="order-2 md:order-1">
+          <p className="font-body text-[11px] tracking-[0.3em] text-ink/40 uppercase">
+            {ARTIST.location}
+          </p>
+          <h2 className="text-glow mt-3 font-display text-4xl uppercase tracking-wide text-ink md:text-5xl">
+            {ARTIST.name}
+          </h2>
           <ChalkUnderline />
-          <div className="mt-8 space-y-5 font-body text-base leading-relaxed text-ink/80">
-            <p>
-              Anna Viola is a 23-year-old pop artist weaving Indian glamour with the
-              cinematic elegance of Old Hollywood — think velvet curtains, gold light,
-              and the hush before the spotlight finds you.
-            </p>
-            <p>
-              Raised between Bombay nights and vintage film reels, her sound pairs lush
-              melodies with stories of desire, diaspora, and dressing for the life you
-              want. Every track feels like stepping into a vanity mirror at midnight.
-            </p>
-            <p>
-              Her debut album marks the first chapter of a world built on lace, lilac,
-              and unapologetic glamour — a invitation to stay a little longer.
-            </p>
+          <div className="mt-8 space-y-5 font-body text-base leading-relaxed text-ink/75">
+            {BIO.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+            ))}
           </div>
         </div>
 
-        <div className="flex justify-center md:justify-end">
+        <div className="order-1 flex justify-center md:order-2 md:justify-end">
           <div
-            className="relative w-full max-w-sm border border-silver p-1"
-            style={{ boxShadow: "4px 4px 0 rgba(0, 0, 0, 0.08)" }}
+            className="film-grain relative w-full max-w-sm border border-ink/15 p-1"
+            style={{ boxShadow: "8px 8px 0 rgba(0, 0, 0, 0.06)" }}
           >
             <img
-              src="/images/portrait.jpg"
-              alt="Anna Viola portrait"
-              className="aspect-[4/5] w-full object-cover"
+              src={IMAGES.about}
+              alt="Anna Viola — Silver Secrets"
+              className="photo-bw aspect-[4/5] w-full object-cover object-top"
             />
           </div>
         </div>
@@ -189,52 +197,83 @@ function ArtistIntro() {
 function FeaturedRelease() {
   return (
     <motion.section
-      className="border-t border-ink bg-ink px-6 py-20 md:py-28"
+      className="film-grain border-t border-white/10 bg-ink px-6 py-20 md:py-28"
       {...sectionReveal}
     >
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display text-3xl text-ivory md:text-4xl">latest release</h2>
+        <p className="font-body text-[11px] tracking-[0.3em] text-white/40 uppercase">
+          debut EP
+        </p>
+        <h2 className="mt-2 font-display text-3xl uppercase tracking-wide text-white md:text-4xl">
+          {DEBUT_EP.title}
+        </h2>
+        <p className="mt-3 max-w-lg font-body text-sm leading-relaxed text-white/55">
+          {DEBUT_EP.description}
+        </p>
 
         <div className="mt-12 grid items-start gap-12 lg:grid-cols-[280px_1fr] lg:gap-16">
-          <div
-            className="mx-auto aspect-square w-full max-w-[280px] bg-ink/30"
-            style={{ boxShadow: "0 0 40px rgba(255, 255, 255, 0.08)" }}
+          <a
+            href={LINKS.silverSecrets}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mx-auto block w-full max-w-[280px]"
           >
-            <div className="flex h-full w-full items-center justify-center border border-ivory/10">
-              <span className="font-script text-4xl text-ivory/40">album art</span>
+            <div
+              className="aspect-square overflow-hidden border border-white/10 transition-colors duration-300 group-hover:border-white/40"
+              style={{ boxShadow: "0 0 48px rgba(255, 255, 255, 0.06)" }}
+            >
+              <img
+                src={DEBUT_EP.coverImage}
+                alt={`${DEBUT_EP.title} cover art`}
+                className="photo-bw h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
             </div>
-          </div>
+          </a>
 
           <div>
-            <ol className="space-y-1">
-              {TRACKS.map((track) => (
-                <li
-                  key={track.number}
-                  className="group flex items-baseline gap-4 border-l-2 border-transparent px-4 py-3 font-body text-sm text-ivory/70 transition-all duration-200 hover:border-silver hover:text-ivory"
-                >
-                  <span className="text-ivory/40">{track.number}</span>
-                  <span>{track.title}</span>
-                </li>
-              ))}
-            </ol>
+            <p className="font-body text-sm text-white/50">
+              Stream singles and unlock the full EP experience on{" "}
+              <a
+                href={LINKS.silverSecrets}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white underline decoration-white/30 underline-offset-2 hover:decoration-white"
+              >
+                PUSH.fm
+              </a>
+              .
+            </p>
 
             <div
               id="spotify-embed"
-              className="mt-10 flex h-[152px] items-center justify-center rounded border border-ivory/10 bg-ink/20"
+              className="mt-8 flex min-h-[152px] items-center justify-center rounded border border-white/10 bg-white/5 px-6 py-8"
             >
-              <p className="font-body text-sm text-ivory/40">
-                Spotify embed placeholder — replace with iframe
-              </p>
+              <div className="text-center">
+                <p className="font-display text-lg text-white">Silver Secrets</p>
+                <p className="mt-2 font-body text-sm text-white/45">
+                  Listen on Apple Music, Amazon, Tidal &amp; more
+                </p>
+              </div>
             </div>
 
-            <a
-              href={LINKS.spotify}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-block border border-ivory bg-transparent px-8 py-3 font-body text-[13px] tracking-[0.15em] text-ivory uppercase transition-colors duration-300 hover:bg-white hover:text-ink"
-            >
-              listen now
-            </a>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href={LINKS.silverSecrets}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block border border-white bg-white px-8 py-3 font-body text-[12px] tracking-[0.15em] text-ink uppercase transition-colors duration-300 hover:bg-transparent hover:text-white"
+              >
+                listen now
+              </a>
+              <a
+                href={LINKS.spotify}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block border border-white/40 px-8 py-3 font-body text-[12px] tracking-[0.15em] text-white uppercase transition-colors duration-300 hover:border-white"
+              >
+                spotify
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -247,7 +286,7 @@ export default function Home() {
     <>
       <Seo
         title="Anna Viola"
-        description="Anna Viola — debut album out now. Indian Glam × Old Hollywood pop. Stream music, watch videos, and connect."
+        description="Anna Viola — Silver Secrets debut EP. Vancouver-based pop. Stream singles, watch videos, and connect."
         path="/"
       />
       <HeroSection />

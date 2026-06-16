@@ -75,7 +75,7 @@ export default function Nav() {
             to="/"
             className="font-script text-[22px] text-ivory transition-opacity hover:opacity-80"
           >
-            annaviolaa
+            anna viola
           </Link>
 
           <ul className="hidden items-center gap-8 md:flex">

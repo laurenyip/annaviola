@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IMAGES } from "../../data/content";
 
 export default function VanityMirrorModal({ isOpen, onClose }) {
   useEffect(() => {
@@ -92,7 +93,7 @@ export default function VanityMirrorModal({ isOpen, onClose }) {
               <foreignObject x="72" y="67" width="176" height="216" clipPath="url(#mirror-clip)">
                 <div className="relative h-full w-full overflow-hidden bg-gradient-to-b from-plum to-ink">
                   <img
-                    src="/images/portrait.jpg"
+                    src={IMAGES.hero}
                     alt=""
                     className="h-full w-full object-cover opacity-90"
                     style={{ filter: "saturate(0.85) contrast(1.05)" }}

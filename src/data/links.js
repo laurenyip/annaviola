@@ -4,11 +4,13 @@ export const LINKS = {
   instagram: "https://www.instagram.com/annaviolaa",
   tiktok: "https://www.tiktok.com/@annaviolaa",
   youtube: "https://www.youtube.com/@annaviolaa",
-  spotify: "https://open.spotify.com/search/annaviolaa",
-  youtubeMusic: "https://music.youtube.com/search?q=annaviolaa",
-  appleMusic: "https://music.apple.com/search?term=annaviolaa",
-  amazonMusic: "https://music.amazon.com/search/annaviolaa",
-  tidal: "https://tidal.com/search?q=annaviolaa",
+  spotify: "https://open.spotify.com/search/Anna%20Viola%20Silver%20Secrets",
+  youtubeMusic: "https://music.youtube.com/search?q=Anna+Viola+Silver+Secrets",
+  appleMusic: "https://music.apple.com/search?term=Anna%20Viola%20Silver%20Secrets",
+  amazonMusic: "https://music.amazon.com/search/Anna+Viola+Silver+Secrets",
+  tidal: "https://tidal.com/search?q=Anna%20Viola%20Silver%20Secrets",
+  silverSecrets: "https://push.fm/fl/tmkzovyo",
+  photos: "https://drive.google.com/drive/folders/1HyIB6wQiCFmjwTr2-E5C415AXBu2Eoxg",
 };
 
 export const HANDLE = "@annaviolaa";
