@@ -1,6 +1,8 @@
 /** Artist content — bio from official promo, release via PUSH.fm */
 import { LINKS } from "./links";
 
+const base = import.meta.env.BASE_URL;
+
 export const ARTIST = {
   name: "Anna Viola",
   handle: "@annaviolaa",
@@ -9,9 +11,9 @@ export const ARTIST = {
 };
 
 export const IMAGES = {
-  hero: "/images/silver-secrets-hero.png",
-  about: "/images/silver-secrets-about.png",
-  cover: "/images/silver-secrets-cover.png",
+  hero: `${base}images/silver-secrets-hero.png`,
+  about: `${base}images/silver-secrets-about.png`,
+  cover: `${base}images/silver-secrets-cover.png`,
 };
 
 export const BIO = [

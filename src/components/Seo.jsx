@@ -1,8 +1,13 @@
 import { useEffect } from "react";
 import { LINKS } from "../data/links";
 
-const SITE_URL = "https://annaviola.com";
-const DEFAULT_IMAGE = `${SITE_URL}/images/silver-secrets-cover.png`;
+const siteOrigin =
+  import.meta.env.VITE_SITE_URL ||
+  (typeof window !== "undefined"
+    ? `${window.location.origin}${import.meta.env.BASE_URL}`.replace(/\/$/, "")
+    : "https://laurenyip.github.io/annaviola");
+
+const DEFAULT_IMAGE = `${siteOrigin}/images/silver-secrets-cover.png`;
 
 function setMeta(attr, key, content) {
   if (!content) return;
@@ -24,7 +29,7 @@ export default function Seo({
   type = "website",
 }) {
   const fullTitle = title === "Anna Viola" ? title : `${title} · Anna Viola`;
-  const url = `${SITE_URL}${path}`;
+  const url = `${siteOrigin}${path.startsWith("/") ? path : `/${path}`}`;
 
   useEffect(() => {
     document.title = fullTitle;
@@ -73,7 +78,7 @@ export function ArtistJsonLd() {
       "@type": "MusicGroup",
       name: "annaviolaa",
       alternateName: "Anna Viola",
-      url: SITE_URL,
+      url: siteOrigin,
       genre: ["Pop"],
       description:
         "Vancouver-based pop artist. Debut EP Silver Secrets — poetry, vulnerability, and glitter.",
