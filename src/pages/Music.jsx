@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
+import PageLogo from "../components/PageLogo";
 import { LINKS } from "../data/links";
 import { DEBUT_EP, DISCOGRAPHY, IMAGES, SINGLES } from "../data/content";
 import {
@@ -31,7 +32,7 @@ function PlatformBadge({ name, icon: Icon, href }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 font-body text-[13px] text-ivory transition-all duration-200 hover:scale-[1.03] hover:ring-1 hover:ring-silver"
+      className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 font-body text-[13px] text-ivory transition-all duration-500 ease-luxe-out hover:scale-[1.05] hover:bg-white hover:text-ink hover:shadow-[0_4px_20px_rgba(255,255,255,0.12)]"
     >
       <Icon className="h-4 w-4 shrink-0" />
       {name}
@@ -42,12 +43,12 @@ function PlatformBadge({ name, icon: Icon, href }) {
 function ReleaseCard({ title, year, type, image, href }) {
   const inner = (
   <>
-      <div className="aspect-square overflow-hidden bg-ink/5">
+      <div className="img-zoom-wrap aspect-square overflow-hidden bg-ink/5">
         {image ? (
           <img
             src={image}
             alt={`${title} cover`}
-            className="photo-bw h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+            className="photo-bw img-zoom h-full w-full object-cover"
           />
         ) : (
           <div className="flex h-full items-center justify-center">
@@ -70,9 +71,7 @@ function ReleaseCard({ title, year, type, image, href }) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block overflow-hidden rounded border border-ink/10 bg-white transition-colors duration-200 hover:border-silver"
-        whileHover={{ y: -4 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="group card-luxe block overflow-hidden rounded border border-ink/10 bg-white hover:border-silver"
       >
         {inner}
       </motion.a>
@@ -81,9 +80,7 @@ function ReleaseCard({ title, year, type, image, href }) {
 
   return (
     <motion.article
-      className="group overflow-hidden rounded border border-ink/10 bg-white transition-colors duration-200 hover:border-silver"
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="group card-luxe overflow-hidden rounded border border-ink/10 bg-white hover:border-silver"
     >
       {inner}
     </motion.article>
@@ -95,18 +92,11 @@ export default function Music() {
     <div className="bg-white px-6 py-16 md:py-24">
       <Seo
         title="Music"
-        description="Stream Anna Viola's debut EP Silver Secrets. Singles on Spotify, Apple Music, and more."
+        description="Stream Anna Viola — Silver Secrets, Pedestal, and more on Spotify, Apple Music, and beyond."
         path="/music"
       />
       <div className="mx-auto max-w-6xl">
-        <motion.h1
-          className="font-display text-5xl uppercase tracking-wide text-ink md:text-6xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          music
-        </motion.h1>
+        <PageLogo />
 
         <motion.section className="mt-14" {...sectionReveal}>
           <div className="film-grain overflow-hidden rounded border border-ink/10 bg-ink">
@@ -120,7 +110,7 @@ export default function Music() {
             <p className="font-body text-[11px] tracking-[0.3em] text-white/40 uppercase">
               debut EP
             </p>
-            <h2 className="mt-2 font-display text-3xl uppercase tracking-wide text-white md:text-4xl">
+            <h2 className="mt-2 font-display text-3xl tracking-wide text-white md:text-4xl">
               {DEBUT_EP.title}
             </h2>
             <p className="mt-4 max-w-xl font-body text-sm leading-relaxed text-white/55">
@@ -130,7 +120,7 @@ export default function Music() {
               href={LINKS.silverSecrets}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-block border border-white bg-white px-8 py-3 font-body text-[12px] tracking-[0.15em] text-ink uppercase transition-colors duration-300 hover:bg-transparent hover:text-white"
+              className="btn-luxe btn-luxe-fill mt-8"
             >
               stream on push.fm
             </a>
@@ -139,12 +129,12 @@ export default function Music() {
         </motion.section>
 
         <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="font-display text-2xl uppercase tracking-wide text-ink md:text-3xl">
-            singles
+          <h2 className="font-display text-2xl tracking-wide text-ink md:text-3xl">
+            Singles
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SINGLES.map((release) => (
-              <ReleaseCard key={release.title} {...release} href={LINKS.silverSecrets} />
+              <ReleaseCard key={release.title} {...release} />
             ))}
           </div>
         </motion.section>
@@ -162,8 +152,8 @@ export default function Music() {
         </motion.section>
 
         <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="font-display text-2xl uppercase tracking-wide text-ink md:text-3xl">
-            discography
+          <h2 className="font-display text-2xl tracking-wide text-ink md:text-3xl">
+            Discography
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {DISCOGRAPHY.map((release) => (

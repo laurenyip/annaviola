@@ -83,9 +83,9 @@ function HeroSection() {
   const [mirrorOpen, setMirrorOpen] = useState(false);
 
   return (
-    <section className="film-grain relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden bg-ink pt-16">
+    <section className="film-grain relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden bg-ink pt-16 md:-mt-[4.5rem] md:pt-[4.5rem]">
       <div
-        className="photo-bw absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="photo-bw absolute inset-0 animate-ken-burns bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${IMAGES.hero})` }}
         role="img"
         aria-label="Anna Viola"
@@ -101,20 +101,12 @@ function HeroSection() {
       <GlitterParticles />
 
       <div className="relative z-10 px-6 text-center">
-        <motion.p
-          className="font-body text-[11px] tracking-[0.35em] text-white/50 uppercase"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          {ARTIST.location}
-        </motion.p>
         <motion.h1
-          className="text-glow mt-4 font-display uppercase tracking-[0.08em] text-white"
+          className="text-glow font-display tracking-wide text-white"
           style={{ fontSize: "clamp(48px, 7vw, 88px)" }}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.05 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
         >
           {ARTIST.name}
         </motion.h1>
@@ -124,13 +116,13 @@ function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
         >
-          {DEBUT_EP.title} — debut EP out now
+          {DEBUT_EP.title} — debut EP out July 1
         </motion.p>
         <motion.a
           href={LINKS.silverSecrets}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-block border border-white/50 px-8 py-3 font-body text-[12px] tracking-[0.2em] text-white uppercase transition-colors duration-300 hover:bg-white hover:text-ink"
+          className="btn-luxe btn-luxe-light mt-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 0.3 }}
@@ -148,7 +140,7 @@ function HeroSection() {
 
       <button
         type="button"
-        className="absolute bottom-6 right-6 z-20 h-10 w-10 cursor-none opacity-0"
+        className="absolute bottom-6 right-6 z-20 h-10 w-10 opacity-0"
         onClick={() => setMirrorOpen(true)}
         aria-label="Open vanity mirror"
       />
@@ -166,7 +158,7 @@ function ArtistIntro() {
           <p className="font-body text-[11px] tracking-[0.3em] text-ink/40 uppercase">
             {ARTIST.location}
           </p>
-          <h2 className="text-glow mt-3 font-display text-4xl uppercase tracking-wide text-ink md:text-5xl">
+          <h2 className="text-glow mt-3 font-display text-4xl tracking-wide text-ink md:text-5xl">
             {ARTIST.name}
           </h2>
           <ChalkUnderline />
@@ -179,13 +171,13 @@ function ArtistIntro() {
 
         <div className="order-1 flex justify-center md:order-2 md:justify-end">
           <div
-            className="film-grain relative w-full max-w-sm border border-ink/15 p-1"
+            className="film-grain frame-luxe img-zoom-wrap relative w-full max-w-sm border border-ink/15 p-1"
             style={{ boxShadow: "8px 8px 0 rgba(0, 0, 0, 0.06)" }}
           >
             <img
               src={IMAGES.about}
               alt="Anna Viola — Silver Secrets"
-              className="photo-bw aspect-[4/5] w-full object-cover object-top"
+              className="photo-bw img-zoom aspect-[4/5] w-full object-cover object-top"
             />
           </div>
         </div>
@@ -204,7 +196,7 @@ function FeaturedRelease() {
         <p className="font-body text-[11px] tracking-[0.3em] text-white/40 uppercase">
           debut EP
         </p>
-        <h2 className="mt-2 font-display text-3xl uppercase tracking-wide text-white md:text-4xl">
+        <h2 className="mt-2 font-display text-3xl tracking-wide text-white md:text-4xl">
           {DEBUT_EP.title}
         </h2>
         <p className="mt-3 max-w-lg font-body text-sm leading-relaxed text-white/55">
@@ -219,13 +211,13 @@ function FeaturedRelease() {
             className="group mx-auto block w-full max-w-[280px]"
           >
             <div
-              className="aspect-square overflow-hidden border border-white/10 transition-colors duration-300 group-hover:border-white/40"
+              className="img-zoom-wrap aspect-square overflow-hidden border border-white/10 transition-colors duration-500 group-hover:border-white/50"
               style={{ boxShadow: "0 0 48px rgba(255, 255, 255, 0.06)" }}
             >
               <img
                 src={DEBUT_EP.coverImage}
                 alt={`${DEBUT_EP.title} cover art`}
-                className="photo-bw h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                className="photo-bw img-zoom h-full w-full object-cover"
               />
             </div>
           </a>
@@ -261,7 +253,7 @@ function FeaturedRelease() {
                 href={LINKS.silverSecrets}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border border-white bg-white px-8 py-3 font-body text-[12px] tracking-[0.15em] text-ink uppercase transition-colors duration-300 hover:bg-transparent hover:text-white"
+                className="btn-luxe btn-luxe-fill"
               >
                 listen now
               </a>
@@ -269,7 +261,7 @@ function FeaturedRelease() {
                 href={LINKS.spotify}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block border border-white/40 px-8 py-3 font-body text-[12px] tracking-[0.15em] text-white uppercase transition-colors duration-300 hover:border-white"
+                className="btn-luxe btn-luxe-ghost"
               >
                 spotify
               </a>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
+import PageLogo from "../components/PageLogo";
 import { PlayIcon } from "../components/icons";
 
 const sectionReveal = {
@@ -31,20 +32,22 @@ function StarDivider() {
 function VideoCard({ title, embedId }) {
   return (
     <article className="group mb-6 break-inside-avoid">
-      <div className="overflow-hidden rounded border border-transparent transition-colors duration-[250ms] focus-within:border-silver hover:border-silver">
-        <div className="relative aspect-video bg-ink/50">
+      <div className="card-luxe overflow-hidden rounded border border-transparent transition-colors duration-500 focus-within:border-silver hover:border-silver">
+        <div className="img-zoom-wrap relative aspect-video overflow-hidden bg-ink/50">
           <iframe
-            className="absolute inset-0 h-full w-full"
+            className="absolute inset-0 h-full w-full transition-transform duration-700 ease-luxe group-hover:scale-[1.03]"
             src={`https://www.youtube.com/embed/${embedId}`}
             title={title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-[250ms] group-hover:opacity-100 group-focus-within:opacity-100">
-            <PlayIcon className="h-10 w-10 text-ivory" />
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-[1px] transition-all duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+            <PlayIcon className="h-10 w-10 scale-90 text-ivory transition-transform duration-500 ease-luxe-out group-hover:scale-100" />
           </div>
         </div>
-        <p className="mt-3 font-body text-sm text-ivory/80">{title}</p>
+        <p className="mt-3 font-body text-sm text-ivory/80 transition-colors duration-300 group-hover:text-silver">
+          {title}
+        </p>
       </div>
     </article>
   );
@@ -64,14 +67,7 @@ export default function Videos() {
         path="/videos"
       />
       <div className="mx-auto max-w-6xl">
-        <motion.h1
-          className="font-display text-5xl italic md:text-6xl lg:text-7xl"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          videos
-        </motion.h1>
+        <PageLogo variant="light" />
 
         <motion.section className="mt-14" {...sectionReveal}>
           <VideoCard {...featured} />

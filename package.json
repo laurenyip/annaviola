@@ -6,7 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:share": "vite preview --host --port 4173",
+    "share": "npm run build && vite preview --host --port 4173",
+    "embed-font": "node scripts/embed-font.mjs",
+    "predev": "node scripts/embed-font.mjs",
+    "prebuild": "node scripts/embed-font.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",

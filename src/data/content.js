@@ -1,4 +1,6 @@
 /** Artist content — bio from official promo, release via PUSH.fm */
+import { LINKS } from "./links";
+
 export const ARTIST = {
   name: "Anna Viola",
   handle: "@annaviolaa",
@@ -22,8 +24,7 @@ export const DEBUT_EP = {
   title: "Silver Secrets",
   type: "EP",
   year: "2026",
-  description:
-    "A debut EP of vulnerable pop — storytelling, melody, and silver-lit glamour.",
+  description: "new album coming soon!",
   coverImage: IMAGES.cover,
   artImage: IMAGES.about,
 };
@@ -34,6 +35,13 @@ export const SINGLES = [
     year: "2026",
     type: "Single",
     image: IMAGES.cover,
+    href: LINKS.silverSecrets,
+  },
+  {
+    title: "Pedestal",
+    year: "2025",
+    type: "Single",
+    href: LINKS.pedestal,
   },
 ];
 
@@ -43,6 +51,12 @@ export const DISCOGRAPHY = [
     year: "2026",
     type: "EP",
     image: IMAGES.cover,
-    href: "https://push.fm/fl/tmkzovyo",
+    href: LINKS.silverSecrets,
+  },
+  {
+    title: "Pedestal",
+    year: "2025",
+    type: "Single",
+    href: LINKS.pedestal,
   },
 ];

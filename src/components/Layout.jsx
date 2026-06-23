@@ -1,6 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import ShootingStarCursor from "./ShootingStarCursor";
 import GlitterOverlay from "./GlitterOverlay";
 import LaceOverlay from "./LaceOverlay";
 import Nav from "./Nav";
@@ -20,12 +19,11 @@ export default function Layout() {
         Skip to content
       </a>
       <ArtistJsonLd />
-      <ShootingStarCursor />
       <KonamiOverlay />
       <GlitterOverlay />
       <LaceOverlay />
       <Nav />
-      <main id="main-content" className="min-h-screen pt-16">
+      <main id="main-content" className="min-h-screen pt-16 md:pt-[4.5rem]">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

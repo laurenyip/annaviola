@@ -2,81 +2,73 @@ import { Link } from "react-router-dom";
 import { InstagramIcon, SpotifyIcon, TikTokIcon, YouTubeIcon } from "./icons";
 import { LINKS } from "../data/links";
 
-const NAV_LINKS = [
-  { to: "/", label: "Home" },
-  { to: "/music", label: "Music" },
-  { to: "/videos", label: "Videos" },
-  { to: "/connect", label: "Connect" },
-];
-
 const SOCIAL = [
-  { href: LINKS.instagram, label: "Instagram", icon: InstagramIcon },
   { href: LINKS.tiktok, label: "TikTok", icon: TikTokIcon },
+  { href: LINKS.instagram, label: "Instagram", icon: InstagramIcon },
   { href: LINKS.youtube, label: "YouTube", icon: YouTubeIcon },
   { href: LINKS.spotify, label: "Spotify", icon: SpotifyIcon },
 ];
 
+const LEGAL_LINKS = [
+  { label: "Terms and Conditions", href: "/terms", external: false },
+  { label: "Privacy Policy", href: "/privacy", external: false },
+  { label: "How We Use Your Data", href: "/privacy#data-use", external: false },
+  { label: "Limit Use of My Personal Information", href: "/privacy#limit-use", external: false },
+  { label: "Your BC Privacy Rights", href: "/privacy#bc-rights", external: false },
+  { label: "Send Feedback", href: "mailto:hello@annaviola.com", external: true },
+];
+
+const socialClass =
+  "text-ink transition-opacity duration-200 opacity-90 hover:opacity-100";
+
+const legalClass =
+  "font-body text-sm leading-relaxed text-ink transition-opacity hover:text-ink/75";
+
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-ink text-ivory">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="flex flex-col items-center gap-10 text-center md:grid md:grid-cols-3 md:items-start md:gap-8 md:text-left">
-          <div>
-            <p className="font-script text-3xl">anna viola</p>
-            <p className="mt-2 font-body text-sm tracking-wide text-ivory/50">
-              Vancouver · Silver Secrets
-            </p>
+    <footer className="bg-lilac text-ink">
+      <div className="mx-auto max-w-5xl px-6 py-10 text-center">
+        <div className="flex items-center justify-center gap-8">
+          {SOCIAL.map(({ href, label, icon: Icon }) => (
             <a
-              href={LINKS.linktree}
+              key={label}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-block font-body text-xs tracking-widest text-ivory/40 underline decoration-white/20 underline-offset-2 transition-colors hover:text-ivory"
+              className={socialClass}
+              aria-label={label}
             >
-              linktr.ee/annaviolaa
+              <Icon className="h-6 w-6" />
             </a>
-          </div>
-
-          <nav>
-            <ul className="flex flex-col gap-3">
-              {NAV_LINKS.map((link) => (
-                <li key={link.to}>
-                  <Link
-                    to={link.to}
-                    className="font-body text-[13px] tracking-widest text-ivory/50 transition-colors hover:text-ivory"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="flex flex-col items-center gap-4 md:items-end">
-            <p className="font-body text-[13px] tracking-widest text-ivory/50">
-              Follow
-            </p>
-            <div className="flex items-center gap-4">
-              {SOCIAL.map(({ href, label, icon: Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-ivory transition-opacity hover:opacity-70"
-                  aria-label={label}
-                >
-                  <Icon />
-                </a>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
 
-        <hr className="mt-10 border-0 border-t border-white/10" style={{ borderTopWidth: "0.5px" }} />
-
-        <p className="mt-6 text-center font-body text-[11px] text-ivory/30">
-          © 2026 Anna Viola. All rights reserved.
+        <p className="mt-10 font-display text-base text-ink">
+          © 2026 Anna Viola
         </p>
+
+        <nav className="mt-4" aria-label="Legal">
+          <ul className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
+            {LEGAL_LINKS.map((link, i) => (
+              <li key={link.label} className="flex items-center">
+                {i > 0 && (
+                  <span className="mx-2 font-body text-sm text-ink/50" aria-hidden="true">
+                    |
+                  </span>
+                )}
+                {link.external ? (
+                  <a href={link.href} className={legalClass}>
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link to={link.href} className={legalClass}>
+                    {link.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
     </footer>
   );

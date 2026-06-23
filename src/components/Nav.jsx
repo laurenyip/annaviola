@@ -1,98 +1,48 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { InstagramIcon, SpotifyIcon, TikTokIcon, YouTubeIcon } from "./icons";
-import { LINKS } from "../data/links";
+import { NavLink } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
-const NAV_LINKS = [
-  { to: "/", label: "Home", end: true },
-  { to: "/music", label: "Music" },
-  { to: "/videos", label: "Videos" },
-  { to: "/connect", label: "Connect" },
+const MOBILE_LINKS = [
+  { to: "/videos", label: "Watch" },
+  { to: "/music", label: "Listen" },
+  { to: "/connect", label: "Follow" },
 ];
 
 const linkClass = ({ isActive }) =>
-  `font-body text-[13px] tracking-widest transition-colors duration-200 ${
-    isActive ? "text-ivory" : "text-ivory/60 hover:text-ivory"
+  `nav-link font-display text-xl tracking-wide transition-opacity duration-200 md:text-2xl ${
+    isActive ? "text-ivory opacity-100" : "text-ivory/60 hover:text-ivory hover:opacity-100"
   }`;
-
-const socialLinks = (
-  <div className="flex items-center gap-4">
-    <a
-      href={LINKS.instagram}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-ivory transition-opacity hover:opacity-70"
-      aria-label="Instagram"
-    >
-      <InstagramIcon />
-    </a>
-    <a
-      href={LINKS.tiktok}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-ivory transition-opacity hover:opacity-70"
-      aria-label="TikTok"
-    >
-      <TikTokIcon />
-    </a>
-    <a
-      href={LINKS.youtube}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-ivory transition-opacity hover:opacity-70"
-      aria-label="YouTube"
-    >
-      <YouTubeIcon />
-    </a>
-    <a
-      href={LINKS.spotify}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="text-ivory transition-opacity hover:opacity-70"
-      aria-label="Spotify"
-    >
-      <SpotifyIcon />
-    </a>
-  </div>
-);
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <>
-      <motion.header
-        className="fixed inset-x-0 top-0 z-50 bg-ink/[0.92] backdrop-blur-sm"
-        initial={{ opacity: 0, y: -8 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-          <Link
-            to="/"
-            className="font-script text-[22px] text-ivory transition-opacity hover:opacity-80"
-          >
-            anna viola
-          </Link>
+      <header className="fixed inset-x-0 top-0 z-50 bg-ink">
+        <nav className="relative flex h-16 w-full items-center px-3 md:h-[4.5rem] md:px-5">
+          <div className="hidden w-full items-center md:flex">
+            <NavLink to="/videos" className={linkClass}>
+              Watch
+            </NavLink>
 
-          <ul className="hidden items-center gap-8 md:flex">
-            {NAV_LINKS.map((link) => (
-              <li key={link.to}>
-                <NavLink to={link.to} end={link.end} className={linkClass}>
-                  {link.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+            <NavLink
+              to="/music"
+              className={({ isActive }) =>
+                `${linkClass({ isActive })} absolute left-1/2 -translate-x-1/2`
+              }
+            >
+              Listen
+            </NavLink>
 
-          <div className="hidden md:block">{socialLinks}</div>
+            <NavLink to="/connect" className={({ isActive }) => `${linkClass({ isActive })} ml-auto`}>
+              Follow
+            </NavLink>
+          </div>
 
           <button
             type="button"
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
+            className="ml-auto flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
             onClick={() => setMenuOpen(true)}
             aria-label="Open menu"
             aria-expanded={menuOpen}
@@ -102,7 +52,7 @@ export default function Nav() {
             <span className="block h-px w-5 bg-ivory" />
           </button>
         </nav>
-      </motion.header>
+      </header>
 
       <AnimatePresence>
         {menuOpen && (
@@ -111,11 +61,11 @@ export default function Nav() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
           >
             <button
               type="button"
-              className="absolute right-6 top-5 flex h-10 w-10 items-center justify-center text-ivory"
+              className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center md:right-5"
               onClick={closeMenu}
               aria-label="Close menu"
             >
@@ -123,36 +73,20 @@ export default function Nav() {
               <span className="absolute block h-px w-5 -rotate-45 bg-ivory" />
             </button>
 
-            <ul className="flex flex-col items-center gap-8">
-              {NAV_LINKS.map((link, i) => (
+            <ul className="flex flex-col items-center gap-10">
+              {MOBILE_LINKS.map((link, i) => (
                 <motion.li
                   key={link.to}
-                  initial={{ opacity: 0, y: 12 }}
+                  initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.4, delay: 0.1 + i * 0.08, ease: "easeOut" }}
+                  transition={{ duration: 0.3, delay: 0.05 + i * 0.06 }}
                 >
-                  <NavLink
-                    to={link.to}
-                    end={link.end}
-                    className={linkClass}
-                    onClick={closeMenu}
-                  >
+                  <NavLink to={link.to} className={linkClass} onClick={closeMenu}>
                     {link.label}
                   </NavLink>
                 </motion.li>
               ))}
             </ul>
-
-            <motion.div
-              className="mt-12"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, delay: 0.42, ease: "easeOut" }}
-            >
-              {socialLinks}
-            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
