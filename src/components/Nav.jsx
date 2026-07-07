@@ -3,15 +3,18 @@ import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 const MOBILE_LINKS = [
-  { to: "/videos", label: "Watch" },
   { to: "/music", label: "Listen" },
+  { to: "/", label: "News", end: true },
   { to: "/connect", label: "Follow" },
 ];
 
-const linkClass = ({ isActive }) =>
-  `nav-link font-display text-xl tracking-wide transition-opacity duration-200 md:text-2xl ${
+const baseLinkClass = (isActive) =>
+  `nav-link font-display text-2xl tracking-wide transition-opacity duration-200 md:text-4xl ${
     isActive ? "text-ivory opacity-100" : "text-ivory/60 hover:text-ivory hover:opacity-100"
   }`;
+
+const newsLinkClass = (isActive) =>
+  `${baseLinkClass(isActive)} ${isActive ? "nav-news-oval" : ""}`;
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,23 +22,27 @@ export default function Nav() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 bg-ink">
-        <nav className="relative flex h-16 w-full items-center px-3 md:h-[4.5rem] md:px-5">
+      <header className="fixed inset-x-0 top-0 z-50 bg-black">
+        <nav className="relative flex h-20 w-full items-center px-3 md:h-[5.5rem] md:px-5">
           <div className="hidden w-full items-center md:flex">
-            <NavLink to="/videos" className={linkClass}>
-              Watch
-            </NavLink>
-
-            <NavLink
-              to="/music"
-              className={({ isActive }) =>
-                `${linkClass({ isActive })} absolute left-1/2 -translate-x-1/2`
-              }
-            >
+            <NavLink to="/music" className={({ isActive }) => baseLinkClass(isActive)}>
               Listen
             </NavLink>
 
-            <NavLink to="/connect" className={({ isActive }) => `${linkClass({ isActive })} ml-auto`}>
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `${newsLinkClass(isActive)} absolute left-1/2 -translate-x-1/2`
+              }
+            >
+              News
+            </NavLink>
+
+            <NavLink
+              to="/connect"
+              className={({ isActive }) => `${baseLinkClass(isActive)} ml-auto`}
+            >
               Follow
             </NavLink>
           </div>
@@ -57,7 +64,7 @@ export default function Nav() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-ink md:hidden"
+            className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -81,7 +88,14 @@ export default function Nav() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3, delay: 0.05 + i * 0.06 }}
                 >
-                  <NavLink to={link.to} className={linkClass} onClick={closeMenu}>
+                  <NavLink
+                    to={link.to}
+                    end={link.end}
+                    className={({ isActive }) =>
+                      link.label === "News" ? newsLinkClass(isActive) : baseLinkClass(isActive)
+                    }
+                    onClick={closeMenu}
+                  >
                     {link.label}
                   </NavLink>
                 </motion.li>

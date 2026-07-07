@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Music from "./pages/Music";
@@ -15,6 +15,7 @@ export default function App() {
         <Route path="/music" element={<Music />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/connect" element={<Connect />} />
+        <Route path="/updates" element={<Navigate to="/" replace />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />
       </Route>

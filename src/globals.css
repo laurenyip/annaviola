@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-white font-body text-ink antialiased;
+    @apply bg-ink font-body text-ivory antialiased;
     min-height: 100vh;
   }
 
@@ -50,22 +50,22 @@
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #fafafa;
+    background-color: #0a0a0a;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: #0a0a0a;
+    background-color: #7ec8dc;
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #333333;
+    background-color: #a8e0f0;
   }
 
   /* Firefox */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #0a0a0a #fafafa;
+    scrollbar-color: #7ec8dc #0a0a0a;
   }
 }
 
@@ -283,7 +283,7 @@
     background-image: linear-gradient(
       90deg,
       currentColor 0%,
-      #d8d8e8 50%,
+      #7ec8dc 50%,
       currentColor 100%
     );
     background-size: 200% auto;
@@ -314,5 +314,158 @@
 
   .font-script-face {
     font-family: UVNMuaThu, cursive;
+  }
+
+  /* Engraved / foil-stamped headline depth */
+  .text-engraved {
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, 0.35))
+      drop-shadow(0 -1px 0 rgba(0, 0, 0, 0.12))
+      drop-shadow(0 2px 3px rgba(0, 0, 0, 0.08));
+  }
+
+  /* Newspaper bulletin — dark press */
+  .newspaper-page {
+    background-color: #0a0a0a;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+
+  .newspaper-kicker {
+    font-variant: small-caps;
+    letter-spacing: 0.2em;
+  }
+
+  .newspaper-feature {
+    position: relative;
+  }
+
+  .newspaper-feature::before {
+    content: "★";
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 10px;
+    color: rgba(126, 200, 220, 0.5);
+  }
+
+  .newspaper-signup {
+    box-shadow: 4px 4px 0 rgba(126, 200, 220, 0.08);
+  }
+
+  .newspaper-masthead {
+    position: relative;
+  }
+
+  .newspaper-masthead::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 2px;
+    margin: 1rem auto 0;
+    background: linear-gradient(90deg, transparent, #7ec8dc, transparent);
+    opacity: 0.5;
+  }
+
+  .nav-news-oval {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 3.5rem / 1.5rem;
+    padding: 0.15rem 1.75rem 0.35rem;
+  }
+
+  .sequin-border .sequin-dot {
+    fill: #e8f8fc;
+    animation: sequin-sparkle 1.6s ease-in-out infinite;
+  }
+
+  .sequin-border .embroidery-bead {
+    fill: #5ba3b8;
+    animation: bead-glint 2.2s ease-in-out infinite;
+  }
+
+  .sequin-border .embroidery-bead:nth-child(2n) {
+    fill: #3d6b7a;
+  }
+
+  .sequin-border .sequin-dot-bright {
+    fill: #ffffff;
+  }
+
+  @keyframes bead-glint {
+    0%,
+    100% {
+      opacity: 0.65;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes sequin-sparkle {
+    0%,
+    100% {
+      opacity: 0.55;
+    }
+    35% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.7;
+    }
+  }
+
+  .footer-legal-row {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .footer-legal-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .announcement-ribbon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 1.75rem;
+    font-family: DM Sans, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fafafa;
+    background: linear-gradient(
+      90deg,
+      rgba(126, 200, 220, 0.08) 0%,
+      rgba(126, 200, 220, 0.18) 50%,
+      rgba(126, 200, 220, 0.08) 100%
+    );
+    border-top: 1px solid rgba(126, 200, 220, 0.35);
+    border-bottom: 1px solid rgba(126, 200, 220, 0.35);
+    box-shadow: 0 0 20px rgba(126, 200, 220, 0.06);
+  }
+
+  .announcement-ribbon::before,
+  .announcement-ribbon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    transform: translateY(-50%);
+    border-style: solid;
+  }
+
+  .announcement-ribbon::before {
+    left: -10px;
+    border-width: 14px 10px 14px 0;
+    border-color: transparent rgba(126, 200, 220, 0.22) transparent transparent;
+  }
+
+  .announcement-ribbon::after {
+    right: -10px;
+    border-width: 14px 0 14px 10px;
+    border-color: transparent transparent transparent rgba(126, 200, 220, 0.22);
   }
 }

@@ -13,7 +13,7 @@ export default function PageLogo({ variant = "dark", className = "" }) {
     >
       <Link
         to="/"
-        className={`font-display text-4xl tracking-wide transition-opacity hover:opacity-75 md:text-5xl ${color}`}
+        className={`font-display text-5xl tracking-wide transition-opacity hover:opacity-75 md:text-6xl ${color}`}
         aria-label="Anna Viola home"
       >
         Anna Viola

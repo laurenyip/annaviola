@@ -1,289 +1,193 @@
-import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import VanityMirrorModal from "../components/easter-eggs/VanityMirrorModal";
+import PageLogo from "../components/PageLogo";
+import SequinEmbroideryBorder from "../components/SequinEmbroideryBorder";
 import { LINKS } from "../data/links";
-import { ARTIST, BIO, DEBUT_EP, IMAGES } from "../data/content";
+import { DEBUT_EP, IMAGES, SINGLES } from "../data/content";
 
 const sectionReveal = {
-  initial: { opacity: 0, y: 40 },
+  initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.7, ease: "easeOut" },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.6, ease: "easeOut" },
 };
 
-function GlitterParticles() {
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 32 }, (_, i) => ({
-        id: i,
-        left: `${8 + Math.random() * 84}%`,
-        top: `${10 + Math.random() * 80}%`,
-        size: 2 + Math.floor(Math.random() * 5),
-        color: Math.random() > 0.35 ? "#FFFFFF" : "#D4D4D4",
-        duration: 4 + Math.random() * 4,
-        delay: Math.random() * 3,
-        reverse: i % 2 === 0,
-      })),
-    []
-  );
-
+function HeroPortrait() {
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className={`absolute rounded-full ${p.reverse ? "animate-float-reverse" : "animate-float"}`}
-          style={{
-            left: p.left,
-            top: p.top,
-            width: p.size,
-            height: p.size,
-            backgroundColor: p.color,
-            opacity: 0.35 + Math.random() * 0.55,
-            boxShadow: "0 0 8px rgba(255,255,255,0.75)",
-            animationDuration: `${p.duration}s`,
-            animationDelay: `${p.delay}s`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
-function ChalkUnderline() {
-  return (
-    <motion.svg
-      viewBox="0 0 200 12"
-      className="mt-2 h-3 w-48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
+    <motion.div
+      className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px]"
+      initial={{ opacity: 0, scale: 0.96 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
     >
-      <motion.path
-        d="M2 8 C 30 2, 55 11, 85 6 S 140 3, 198 7"
-        stroke="#D4D4D4"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
-        style={{ strokeDasharray: 1, strokeDashoffset: 0 }}
-      />
-    </motion.svg>
+      <div className="film-grain relative w-full overflow-hidden bg-ink">
+        <img
+          src={IMAGES.hero}
+          alt="Anna Viola"
+          className="photo-bw aspect-[3/4] w-full object-cover object-top"
+        />
+      </div>
+    </motion.div>
   );
 }
 
-function HeroSection() {
-  const [mirrorOpen, setMirrorOpen] = useState(false);
-
+function NewspaperHeadline({ kicker, date, headline, dek, href, cta, featured = false }) {
   return (
-    <section className="film-grain relative -mt-16 flex min-h-screen items-center justify-center overflow-hidden bg-ink pt-16 md:-mt-[4.5rem] md:pt-[4.5rem]">
-      <div
-        className="photo-bw absolute inset-0 animate-ken-burns bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${IMAGES.hero})` }}
-        role="img"
-        aria-label="Anna Viola"
-      />
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, #0A0A0A 0%, transparent 45%, transparent 65%, #0A0A0A 100%)",
-        }}
-      />
+    <article className={featured ? "newspaper-feature text-center" : ""}>
+      <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1">
+        <span className="newspaper-kicker font-body text-xs tracking-[0.25em] text-xray uppercase">
+          {kicker}
+        </span>
+        {date && (
+          <span className="font-body text-[13px] text-white/35">{date}</span>
+        )}
+      </div>
 
-      <GlitterParticles />
+      <h2
+        className={`mt-2 font-display leading-tight tracking-wide text-ivory ${
+          featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
+        }`}
+      >
+        {headline}
+      </h2>
 
-      <div className="relative z-10 px-6 text-center">
-        <motion.h1
-          className="text-glow font-display tracking-wide text-white"
-          style={{ fontSize: "clamp(48px, 7vw, 88px)" }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+      {dek && (
+        <p
+          className={`mt-3 font-body leading-relaxed text-white/55 ${
+            featured ? "text-base sm:text-lg" : "text-base"
+          }`}
         >
-          {ARTIST.name}
-        </motion.h1>
-        <motion.p
-          className="mt-5 font-body text-[13px] tracking-[0.25em] text-white/60 uppercase"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-        >
-          {DEBUT_EP.title} — debut EP out July 1
-        </motion.p>
-        <motion.a
-          href={LINKS.silverSecrets}
+          {dek}
+        </p>
+      )}
+
+      {href && cta && (
+        <a
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-luxe btn-luxe-light mt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.3 }}
+          className="link-shimmer mt-4 inline-block font-body text-[13px] tracking-[0.12em] text-ivory uppercase"
         >
-          stream singles
-        </motion.a>
+          {cta} →
+        </a>
+      )}
+    </article>
+  );
+}
+
+function SingleRow({ single, prominent = false }) {
+  const inner = (
+    <div className="flex items-center gap-4">
+      <div
+        className={`img-zoom-wrap shrink-0 overflow-hidden border border-white/10 bg-white/5 ${
+          prominent ? "h-24 w-24" : "h-[4.5rem] w-[4.5rem]"
+        }`}
+      >
+        {single.image ? (
+          <img
+            src={single.image}
+            alt=""
+            className="photo-bw img-zoom h-full w-full object-cover"
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center">
+            <span className="font-display text-lg text-white/15">{single.title[0]}</span>
+          </div>
+        )}
       </div>
 
-      <div className="absolute bottom-10 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 animate-scroll-bounce">
-        <div className="h-10 w-px bg-white/30" />
-        <span className="font-body text-[11px] tracking-[0.2em] text-white/30 uppercase">
-          scroll
+      <div className="min-w-0 flex-1">
+        <div className="flex flex-wrap items-center gap-2">
+          {single.isNew && (
+            <span className="rounded-full border border-xray/40 px-2.5 py-0.5 font-body text-[11px] tracking-[0.15em] text-xray uppercase">
+              New
+            </span>
+          )}
+          <span className="font-body text-xs tracking-[0.2em] text-white/35 uppercase">
+            {single.type}
+          </span>
+        </div>
+        <h3
+          className={`mt-0.5 font-display tracking-wide text-ivory ${
+            prominent ? "text-2xl" : "text-lg"
+          }`}
+        >
+          {single.title}
+        </h3>
+        <p className="font-body text-[13px] text-white/40">{single.year}</p>
+      </div>
+
+      {single.href && (
+        <span className="shrink-0 font-body text-xs tracking-[0.1em] text-white/30 uppercase group-hover:text-xray">
+          →
         </span>
-      </div>
-
-      <button
-        type="button"
-        className="absolute bottom-6 right-6 z-20 h-10 w-10 opacity-0"
-        onClick={() => setMirrorOpen(true)}
-        aria-label="Open vanity mirror"
-      />
-
-      <VanityMirrorModal isOpen={mirrorOpen} onClose={() => setMirrorOpen(false)} />
-    </section>
+      )}
+    </div>
   );
-}
 
-function ArtistIntro() {
-  return (
-    <motion.section className="bg-white px-6 py-20 md:py-28" {...sectionReveal}>
-      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
-        <div className="order-2 md:order-1">
-          <p className="font-body text-[11px] tracking-[0.3em] text-ink/40 uppercase">
-            {ARTIST.location}
-          </p>
-          <h2 className="text-glow mt-3 font-display text-4xl tracking-wide text-ink md:text-5xl">
-            {ARTIST.name}
-          </h2>
-          <ChalkUnderline />
-          <div className="mt-8 space-y-5 font-body text-base leading-relaxed text-ink/75">
-            {BIO.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)}>{paragraph}</p>
-            ))}
-          </div>
-        </div>
+  if (single.href) {
+    return (
+      <a
+        href={single.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group block border-b border-white/10 py-4 transition-colors hover:border-xray/25"
+      >
+        {inner}
+      </a>
+    );
+  }
 
-        <div className="order-1 flex justify-center md:order-2 md:justify-end">
-          <div
-            className="film-grain frame-luxe img-zoom-wrap relative w-full max-w-sm border border-ink/15 p-1"
-            style={{ boxShadow: "8px 8px 0 rgba(0, 0, 0, 0.06)" }}
-          >
-            <img
-              src={IMAGES.about}
-              alt="Anna Viola — Silver Secrets"
-              className="photo-bw img-zoom aspect-[4/5] w-full object-cover object-top"
-            />
-          </div>
-        </div>
-      </div>
-    </motion.section>
-  );
-}
-
-function FeaturedRelease() {
-  return (
-    <motion.section
-      className="film-grain border-t border-white/10 bg-ink px-6 py-20 md:py-28"
-      {...sectionReveal}
-    >
-      <div className="mx-auto max-w-6xl">
-        <p className="font-body text-[11px] tracking-[0.3em] text-white/40 uppercase">
-          debut EP
-        </p>
-        <h2 className="mt-2 font-display text-3xl tracking-wide text-white md:text-4xl">
-          {DEBUT_EP.title}
-        </h2>
-        <p className="mt-3 max-w-lg font-body text-sm leading-relaxed text-white/55">
-          {DEBUT_EP.description}
-        </p>
-
-        <div className="mt-12 grid items-start gap-12 lg:grid-cols-[280px_1fr] lg:gap-16">
-          <a
-            href={LINKS.silverSecrets}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group mx-auto block w-full max-w-[280px]"
-          >
-            <div
-              className="img-zoom-wrap aspect-square overflow-hidden border border-white/10 transition-colors duration-500 group-hover:border-white/50"
-              style={{ boxShadow: "0 0 48px rgba(255, 255, 255, 0.06)" }}
-            >
-              <img
-                src={DEBUT_EP.coverImage}
-                alt={`${DEBUT_EP.title} cover art`}
-                className="photo-bw img-zoom h-full w-full object-cover"
-              />
-            </div>
-          </a>
-
-          <div>
-            <p className="font-body text-sm text-white/50">
-              Stream singles and unlock the full EP experience on{" "}
-              <a
-                href={LINKS.silverSecrets}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white underline decoration-white/30 underline-offset-2 hover:decoration-white"
-              >
-                PUSH.fm
-              </a>
-              .
-            </p>
-
-            <div
-              id="spotify-embed"
-              className="mt-8 flex min-h-[152px] items-center justify-center rounded border border-white/10 bg-white/5 px-6 py-8"
-            >
-              <div className="text-center">
-                <p className="font-display text-lg text-white">Silver Secrets</p>
-                <p className="mt-2 font-body text-sm text-white/45">
-                  Listen on Apple Music, Amazon, Tidal &amp; more
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href={LINKS.silverSecrets}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-luxe btn-luxe-fill"
-              >
-                listen now
-              </a>
-              <a
-                href={LINKS.spotify}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-luxe btn-luxe-ghost"
-              >
-                spotify
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </motion.section>
-  );
+  return <div className="border-b border-white/10 py-4">{inner}</div>;
 }
 
 export default function Home() {
+  const recentSingle = SINGLES.find((s) => s.isNew) ?? SINGLES[0];
+  const olderSingles = SINGLES.filter((s) => s !== recentSingle);
+
   return (
-    <>
+    <div className="newspaper-page relative min-h-screen bg-black">
       <Seo
         title="Anna Viola"
-        description="Anna Viola — Silver Secrets debut EP. Vancouver-based pop. Stream singles, watch videos, and connect."
+        description="Anna Viola — Silver Secrets debut EP out July 1, 2026. Stream singles, watch videos, and connect."
         path="/"
       />
-      <HeroSection />
-      <ArtistIntro />
-      <FeaturedRelease />
-    </>
+
+      <SequinEmbroideryBorder />
+
+      <div className="relative z-10 mx-auto max-w-lg px-6 py-10 md:py-14">
+        <PageLogo variant="light" className="mb-8 [&_a]:lowercase" />
+
+        <HeroPortrait />
+
+        <motion.section className="mt-10 border-t-2 border-white/15 pt-8" {...sectionReveal}>
+          <NewspaperHeadline
+            featured
+            kicker="Releases"
+            date={DEBUT_EP.releaseDate}
+            headline={`${DEBUT_EP.title} — Debut ${DEBUT_EP.type}`}
+            dek="The debut EP arrives this summer — poetry turned melody, silver linings wrapped in vulnerability. Pre-save now and be first in line when every secret drops."
+            href={LINKS.silverSecrets}
+            cta="Pre-save EP"
+          />
+        </motion.section>
+
+        <motion.section className="mt-10" {...sectionReveal}>
+          <p className="newspaper-kicker mb-4 text-center font-body text-xs tracking-[0.3em] text-xray uppercase">
+            Latest Single
+          </p>
+          <SingleRow single={recentSingle} prominent />
+        </motion.section>
+
+        <motion.section className="mt-6" {...sectionReveal}>
+          <p className="newspaper-kicker mb-2 text-center font-body text-xs tracking-[0.3em] text-white/40 uppercase">
+            Singles
+          </p>
+          {olderSingles.map((single) => (
+            <SingleRow key={single.title} single={single} />
+          ))}
+        </motion.section>
+      </div>
+    </div>
   );
 }

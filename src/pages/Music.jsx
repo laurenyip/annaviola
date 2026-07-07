@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import PageLogo from "../components/PageLogo";
 import { LINKS } from "../data/links";
-import { DEBUT_EP, DISCOGRAPHY, IMAGES, SINGLES } from "../data/content";
+import { DISCOGRAPHY, SINGLES } from "../data/content";
 import {
   SpotifyIcon,
   AppleMusicIcon,
@@ -32,7 +32,7 @@ function PlatformBadge({ name, icon: Icon, href }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-2 rounded-full bg-ink px-4 py-2 font-body text-[13px] text-ivory transition-all duration-500 ease-luxe-out hover:scale-[1.05] hover:bg-white hover:text-ink hover:shadow-[0_4px_20px_rgba(255,255,255,0.12)]"
+      className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 font-body text-[13px] text-ivory transition-all duration-500 ease-luxe-out hover:scale-[1.05] hover:border-xray/50 hover:bg-xray/10 hover:shadow-[0_4px_20px_rgba(126,200,220,0.12)]"
     >
       <Icon className="h-4 w-4 shrink-0" />
       {name}
@@ -40,10 +40,15 @@ function PlatformBadge({ name, icon: Icon, href }) {
   );
 }
 
-function ReleaseCard({ title, year, type, image, href }) {
+function ReleaseCard({ title, year, type, image, href, isNew }) {
   const inner = (
-  <>
-      <div className="img-zoom-wrap aspect-square overflow-hidden bg-ink/5">
+    <>
+      <div className="img-zoom-wrap relative aspect-square overflow-hidden bg-white/5">
+        {isNew && (
+          <span className="absolute left-3 top-3 z-10 rounded-full border border-xray/40 bg-ink/80 px-2 py-0.5 font-body text-[10px] tracking-[0.15em] text-xray uppercase">
+            New
+          </span>
+        )}
         {image ? (
           <img
             src={image}
@@ -52,13 +57,13 @@ function ReleaseCard({ title, year, type, image, href }) {
           />
         ) : (
           <div className="flex h-full items-center justify-center">
-            <span className="font-display text-3xl text-ink/15">{title[0]}</span>
+            <span className="font-display text-3xl text-white/15">{title[0]}</span>
           </div>
         )}
       </div>
-      <div className="border-t border-ink/10 p-4 group-hover:border-silver">
-        <h3 className="font-display text-base text-ink">{title}</h3>
-        <p className="mt-1 font-body text-xs text-ink/50">
+      <div className="border-t border-white/10 p-4 group-hover:border-xray/40">
+        <h3 className="font-display text-base text-ivory">{title}</h3>
+        <p className="mt-1 font-body text-xs text-white/45">
           {year} · {type}
         </p>
       </div>
@@ -71,7 +76,7 @@ function ReleaseCard({ title, year, type, image, href }) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group card-luxe block overflow-hidden rounded border border-ink/10 bg-white hover:border-silver"
+        className="group card-luxe block overflow-hidden rounded border border-white/10 bg-white/[0.03] hover:border-xray/30"
       >
         {inner}
       </motion.a>
@@ -79,9 +84,7 @@ function ReleaseCard({ title, year, type, image, href }) {
   }
 
   return (
-    <motion.article
-      className="group card-luxe overflow-hidden rounded border border-ink/10 bg-white hover:border-silver"
-    >
+    <motion.article className="group card-luxe overflow-hidden rounded border border-white/10 bg-white/[0.03] hover:border-xray/30">
       {inner}
     </motion.article>
   );
@@ -89,47 +92,21 @@ function ReleaseCard({ title, year, type, image, href }) {
 
 export default function Music() {
   return (
-    <div className="bg-white px-6 py-16 md:py-24">
+    <div className="bg-ink px-6 py-16 text-ivory md:py-24">
       <Seo
         title="Music"
-        description="Stream Anna Viola — Silver Secrets, Pedestal, and more on Spotify, Apple Music, and beyond."
+        description="Stream Anna Viola — Right Time, Wrong Person, Silver Secrets, Pedestal, and more."
         path="/music"
       />
       <div className="mx-auto max-w-6xl">
-        <PageLogo />
+        <PageLogo variant="light" />
 
-        <motion.section className="mt-14" {...sectionReveal}>
-          <div className="film-grain overflow-hidden rounded border border-ink/10 bg-ink">
-            <img
-              src={IMAGES.hero}
-              alt=""
-              className="photo-bw h-48 w-full object-cover object-top opacity-60 md:h-64"
-              aria-hidden="true"
-            />
-            <div className="p-8 md:p-12">
-            <p className="font-body text-[11px] tracking-[0.3em] text-white/40 uppercase">
-              debut EP
-            </p>
-            <h2 className="mt-2 font-display text-3xl tracking-wide text-white md:text-4xl">
-              {DEBUT_EP.title}
-            </h2>
-            <p className="mt-4 max-w-xl font-body text-sm leading-relaxed text-white/55">
-              {DEBUT_EP.description}
-            </p>
-            <a
-              href={LINKS.silverSecrets}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-luxe btn-luxe-fill mt-8"
-            >
-              stream on push.fm
-            </a>
-            </div>
-          </div>
-        </motion.section>
+        <motion.div className="mt-8 flex justify-center" {...sectionReveal}>
+          <p className="announcement-ribbon">new album out soon</p>
+        </motion.div>
 
-        <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="font-display text-2xl tracking-wide text-ink md:text-3xl">
+        <motion.section className="mt-16" {...sectionReveal}>
+          <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl">
             Singles
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -141,7 +118,7 @@ export default function Music() {
 
         <motion.section className="mt-20" {...sectionReveal}>
           <h2 className="sr-only">Streaming platforms</h2>
-          <p className="font-body text-[11px] tracking-[0.3em] text-ink/40 uppercase">
+          <p className="font-body text-[11px] tracking-[0.3em] text-xray/70 uppercase">
             stream everywhere
           </p>
           <div className="mt-4 flex flex-wrap gap-3">
@@ -152,7 +129,7 @@ export default function Music() {
         </motion.section>
 
         <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="font-display text-2xl tracking-wide text-ink md:text-3xl">
+          <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl">
             Discography
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

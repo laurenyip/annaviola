@@ -12,6 +12,10 @@ export default {
         lavender: "#D8D8E8",
         gold: "#D4D4D4",
         silver: "#E8E8E8",
+        xray: "#7EC8DC",
+        "xray-deep": "#3D6B7A",
+        "xray-glow": "#A8E0F0",
+        "xray-ink": "#1A2E38",
       },
       fontFamily: {
         display: ["UVNMuaThu", "cursive"],

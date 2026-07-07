@@ -37,8 +37,8 @@ export default function Privacy() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16 md:py-24">
       <Seo title="Privacy Policy" description="Privacy Policy for annaviola.com" path="/privacy" />
-      <h1 className="font-display text-3xl text-ink md:text-4xl">Privacy Policy</h1>
-      <p className="mt-6 font-body text-sm leading-relaxed text-ink/70">
+      <h1 className="font-display text-3xl text-ivory md:text-4xl">Privacy Policy</h1>
+      <p className="mt-6 font-body text-sm leading-relaxed text-white/65">
         Anna Viola respects your privacy. This policy describes how information is collected and
         used on annaviola.com in accordance with Canadian federal law and British Columbia
         privacy law. This site is operated from Vancouver, BC.
@@ -46,19 +46,19 @@ export default function Privacy() {
 
       {sections.map((section) => (
         <section key={section.id} id={section.id} className="mt-10 scroll-mt-20">
-          <h2 className="font-display text-xl text-ink">{section.title}</h2>
+          <h2 className="font-display text-xl text-ivory">{section.title}</h2>
           {section.body.map((paragraph) => (
-            <p key={paragraph} className="mt-3 font-body text-sm leading-relaxed text-ink/70">
+            <p key={paragraph} className="mt-3 font-body text-sm leading-relaxed text-white/65">
               {paragraph}
             </p>
           ))}
           {section.link && (
-            <p className="mt-3 font-body text-sm leading-relaxed text-ink/70">
+            <p className="mt-3 font-body text-sm leading-relaxed text-white/65">
               <a
                 href={section.link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline underline-offset-2"
+                className="text-xray underline underline-offset-2"
               >
                 {section.link.label}
               </a>
@@ -67,13 +67,13 @@ export default function Privacy() {
         </section>
       ))}
 
-      <p className="mt-10 font-body text-sm text-ink/70">
+      <p className="mt-10 font-body text-sm text-white/65">
         To exercise your rights or send feedback, contact{" "}
-        <a href="mailto:hello@annaviola.com" className="underline underline-offset-2">
+        <a href="mailto:hello@annaviola.com" className="text-xray underline underline-offset-2">
           hello@annaviola.com
         </a>
         . See also our{" "}
-        <Link to="/terms" className="underline underline-offset-2">
+        <Link to="/terms" className="text-xray underline underline-offset-2">
           Terms and Conditions
         </Link>
         .
