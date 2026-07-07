@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import PageLogo from "../components/PageLogo";
 import { LINKS } from "../data/links";
-import { DISCOGRAPHY, SINGLES } from "../data/content";
+import { SINGLES } from "../data/content";
 import {
   SpotifyIcon,
   AppleMusicIcon,
@@ -124,17 +124,6 @@ export default function Music() {
           <div className="mt-4 flex flex-wrap gap-3">
             {PLATFORMS.map((platform) => (
               <PlatformBadge key={platform.name} {...platform} />
-            ))}
-          </div>
-        </motion.section>
-
-        <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl">
-            Discography
-          </h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {DISCOGRAPHY.map((release) => (
-              <ReleaseCard key={release.title} {...release} />
             ))}
           </div>
         </motion.section>
