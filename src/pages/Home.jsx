@@ -2,8 +2,13 @@ import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import PageLogo from "../components/PageLogo";
 import SequinEmbroideryBorder from "../components/SequinEmbroideryBorder";
-import { LINKS } from "../data/links";
-import { DEBUT_EP, IMAGES, SINGLES } from "../data/content";
+import {
+  DEBUT_EP,
+  DOCUMENTARY,
+  IMAGES,
+  NEXT_SINGLE,
+  SINGLES,
+} from "../data/content";
 
 const sectionReveal = {
   initial: { opacity: 0, y: 24 },
@@ -142,21 +147,18 @@ function SingleRow({ single, prominent = false }) {
 }
 
 export default function Home() {
-  const recentSingle = SINGLES.find((s) => s.isNew) ?? SINGLES[0];
-  const olderSingles = SINGLES.filter((s) => s !== recentSingle);
-
   return (
     <div className="newspaper-page relative min-h-screen bg-black">
       <Seo
         title="Anna Viola"
-        description="Anna Viola — Silver Secrets debut EP out July 1, 2026. Stream singles, watch videos, and connect."
+        description="Anna Viola — next single out August 21, debut EP Silver Secrets and documentary arriving November 2026."
         path="/"
       />
 
       <SequinEmbroideryBorder />
 
       <div className="relative z-10 mx-auto max-w-lg px-6 py-10 md:py-14">
-        <PageLogo variant="light" className="mb-8 [&_a]:lowercase" />
+        <PageLogo variant="light" ornament className="mb-8" />
 
         <HeroPortrait />
 
@@ -164,28 +166,37 @@ export default function Home() {
           <NewspaperHeadline
             featured
             kicker="Releases"
+            date={NEXT_SINGLE.releaseDate}
+            headline={`${NEXT_SINGLE.title} — Out August 21`}
+            dek={NEXT_SINGLE.description}
+          />
+        </motion.section>
+
+        <motion.section className="mt-10 border-t border-white/10 pt-8" {...sectionReveal}>
+          <NewspaperHeadline
+            kicker="Releases"
             date={DEBUT_EP.releaseDate}
             headline={`${DEBUT_EP.title} — Debut ${DEBUT_EP.type}`}
-            dek="The debut EP arrives this summer — poetry turned melody, silver linings wrapped in vulnerability. Pre-save now and be first in line when every secret drops."
-            href={LINKS.silverSecrets}
-            cta="Pre-save EP"
+            dek="The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability."
           />
         </motion.section>
 
         <motion.section className="mt-10" {...sectionReveal}>
-          <p className="newspaper-kicker mb-4 text-center font-body text-xs tracking-[0.3em] text-xray uppercase">
-            Latest Single
-          </p>
-          <SingleRow single={recentSingle} prominent />
-        </motion.section>
-
-        <motion.section className="mt-6" {...sectionReveal}>
           <p className="newspaper-kicker mb-2 text-center font-body text-xs tracking-[0.3em] text-white/40 uppercase">
             Singles
           </p>
-          {olderSingles.map((single) => (
+          {SINGLES.map((single) => (
             <SingleRow key={single.title} single={single} />
           ))}
+        </motion.section>
+
+        <motion.section className="mt-10 border-t border-white/10 pt-8 pb-4" {...sectionReveal}>
+          <NewspaperHeadline
+            kicker="Film"
+            date={DOCUMENTARY.releaseDate}
+            headline={`${DOCUMENTARY.title} — Out in November`}
+            dek={DOCUMENTARY.description}
+          />
         </motion.section>
       </div>
     </div>

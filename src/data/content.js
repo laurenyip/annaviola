@@ -16,6 +16,9 @@ export const IMAGES = {
   cover: `${base}images/silver-secrets-cover.png`,
   pedestalCover: `${base}images/pedestal-cover.png`,
   rightTimeWrongPerson: `${base}images/right-time-wrong-person.png`,
+  logoOrnamentTop: `${base}images/logo-ornament-top.png`,
+  ornamentBorderLeft: `${base}images/ornament-border-left.png`,
+  ornamentBorderRight: `${base}images/ornament-border-right.png`,
 };
 
 export const BIO = [
@@ -28,10 +31,24 @@ export const DEBUT_EP = {
   title: "Silver Secrets",
   type: "EP",
   year: "2026",
-  releaseDate: "July 1, 2026",
+  releaseDate: "November 2026",
   description: "new album coming soon!",
   coverImage: IMAGES.cover,
   artImage: IMAGES.about,
+};
+
+export const NEXT_SINGLE = {
+  title: "New Single",
+  releaseDate: "August 21, 2026",
+  description:
+    "The next single arrives August 21 — a first taste of what's coming before the debut EP.",
+};
+
+export const DOCUMENTARY = {
+  title: "Documentary",
+  releaseDate: "November 2026",
+  description:
+    "A documentary arrives this November — go behind the scenes of Anna Viola's world as the debut EP lands.",
 };
 
 export const SINGLES = [
@@ -61,30 +78,25 @@ export const SINGLES = [
 
 export const UPDATES = [
   {
-    id: "right-time-wrong-person",
-    date: "July 1, 2026",
+    id: "next-single-aug-2026",
+    date: "August 21, 2026",
     section: "Releases",
-    headline: "Right Time, Wrong Person — Out Now",
-    dek: "The third single is here. A story about connection that arrives a beat too late — stream it everywhere.",
-    image: IMAGES.rightTimeWrongPerson,
-    href: LINKS.rightTimeWrongPerson,
-    cta: "Listen",
+    headline: "New Single — Out August 21",
+    dek: "The next single arrives August 21 — a first taste of what's coming before the debut EP.",
   },
   {
-    id: "ep-july-2026",
-    date: "July 2026",
+    id: "ep-november-2026",
+    date: "November 2026",
     section: "Releases",
-    headline: "Silver Secrets EP — Coming Soon",
-    dek: "The debut EP arrives this summer. Pre-save now and be first in line when every secret drops.",
-    href: LINKS.silverSecrets,
-    cta: "Pre-save EP",
+    headline: "Silver Secrets — Debut EP",
+    dek: "The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability.",
   },
   {
-    id: "videos-coming",
-    date: "Coming soon",
+    id: "documentary-nov-2026",
+    date: "November 2026",
     section: "Film",
-    headline: "Music Videos on the Way",
-    dek: "Visuals are in the works. Join the list below for first access when the first frame drops.",
+    headline: "Documentary — Out in November",
+    dek: "A documentary arrives this November — go behind the scenes of Anna Viola's world as the debut EP lands.",
   },
 ];
 
