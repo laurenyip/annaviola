@@ -36,32 +36,26 @@ function HeroPortrait() {
   );
 }
 
-function NewspaperHeadline({ kicker, date, headline, dek, href, cta, featured = false }) {
+function NewspaperHeadline({ kicker, date, headline, dek, href, cta }) {
   return (
-    <article className={featured ? "newspaper-feature text-center" : ""}>
+    <article className="text-center">
       <div className="flex flex-wrap items-baseline justify-center gap-x-3 gap-y-1">
-        <span className="newspaper-kicker font-body text-xs tracking-[0.25em] text-xray uppercase">
-          {kicker}
-        </span>
+        {kicker && (
+          <span className="newspaper-kicker font-body text-xs tracking-[0.25em] text-xray uppercase">
+            {kicker}
+          </span>
+        )}
         {date && (
-          <span className="font-body text-[13px] text-white/35">{date}</span>
+          <span className="font-body text-sm text-white/75">{date}</span>
         )}
       </div>
 
-      <h2
-        className={`mt-2 font-display leading-tight tracking-wide text-ivory ${
-          featured ? "text-3xl sm:text-4xl" : "text-xl sm:text-2xl"
-        }`}
-      >
+      <h2 className="mt-2 font-display text-2xl leading-tight tracking-wide text-white sm:text-3xl">
         {headline}
       </h2>
 
       {dek && (
-        <p
-          className={`mt-3 font-body leading-relaxed text-white/55 ${
-            featured ? "text-base sm:text-lg" : "text-base"
-          }`}
-        >
+        <p className="mt-3 font-body text-base leading-relaxed text-white/80">
           {dek}
         </p>
       )}
@@ -96,7 +90,7 @@ function SingleRow({ single, prominent = false }) {
           />
         ) : (
           <div className="flex h-full items-center justify-center">
-            <span className="font-display text-lg text-white/15">{single.title[0]}</span>
+            <span className="font-display text-lg text-white/45">{single.title[0]}</span>
           </div>
         )}
       </div>
@@ -108,7 +102,7 @@ function SingleRow({ single, prominent = false }) {
               New
             </span>
           )}
-          <span className="font-body text-xs tracking-[0.2em] text-white/35 uppercase">
+          <span className="font-body text-xs tracking-[0.2em] text-white/70 uppercase">
             {single.type}
           </span>
         </div>
@@ -119,11 +113,11 @@ function SingleRow({ single, prominent = false }) {
         >
           {single.title}
         </h3>
-        <p className="font-body text-[13px] text-white/40">{single.year}</p>
+        <p className="font-body text-[13px] text-white/65">{single.year}</p>
       </div>
 
       {single.href && (
-        <span className="shrink-0 font-body text-xs tracking-[0.1em] text-white/30 uppercase group-hover:text-xray">
+        <span className="shrink-0 font-body text-xs tracking-[0.1em] text-white/65 uppercase group-hover:text-xray">
           →
         </span>
       )}
@@ -162,27 +156,28 @@ export default function Home() {
 
         <HeroPortrait />
 
-        <motion.section className="mt-10 border-t-2 border-white/15 pt-8" {...sectionReveal}>
-          <NewspaperHeadline
-            featured
-            kicker="Releases"
-            date={NEXT_SINGLE.releaseDate}
-            headline={`${NEXT_SINGLE.title} — Out August 21`}
-            dek={NEXT_SINGLE.description}
-          />
-        </motion.section>
-
-        <motion.section className="mt-10 border-t border-white/10 pt-8" {...sectionReveal}>
-          <NewspaperHeadline
-            kicker="Releases"
-            date={DEBUT_EP.releaseDate}
-            headline={`${DEBUT_EP.title} — Debut ${DEBUT_EP.type}`}
-            dek="The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability."
-          />
+        <motion.section className="mt-10 border-t-2 border-white/25 pt-8" {...sectionReveal}>
+          <h1 className="newspaper-kicker text-center font-body text-sm tracking-[0.3em] text-xray uppercase">
+            Releases
+          </h1>
+          <div className="mt-6 space-y-8 divide-y divide-white/20">
+            <NewspaperHeadline
+              date={NEXT_SINGLE.releaseDate}
+              headline={NEXT_SINGLE.title}
+              dek={NEXT_SINGLE.description}
+            />
+            <div className="pt-8">
+              <NewspaperHeadline
+                date={DEBUT_EP.releaseDate}
+                headline={`${DEBUT_EP.title} — Debut ${DEBUT_EP.type}`}
+                dek="The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability."
+              />
+            </div>
+          </div>
         </motion.section>
 
         <motion.section className="mt-10" {...sectionReveal}>
-          <p className="newspaper-kicker mb-2 text-center font-body text-xs tracking-[0.3em] text-white/40 uppercase">
+          <p className="newspaper-kicker mb-2 text-center font-body text-xs tracking-[0.3em] text-white/75 uppercase">
             Singles
           </p>
           {SINGLES.map((single) => (

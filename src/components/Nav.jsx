@@ -9,12 +9,11 @@ const MOBILE_LINKS = [
 ];
 
 const baseLinkClass = (isActive) =>
-  `nav-link font-display text-2xl tracking-wide transition-opacity duration-200 md:text-4xl ${
-    isActive ? "text-ivory opacity-100" : "text-ivory/60 hover:text-ivory hover:opacity-100"
+  `nav-link font-display text-[1.6rem] tracking-wide transition-opacity duration-200 md:text-[2.4rem] ${
+    isActive
+      ? "text-white opacity-100 underline decoration-1 underline-offset-8"
+      : "text-ivory/80 hover:text-white hover:opacity-100"
   }`;
-
-const newsLinkClass = (isActive) =>
-  `${baseLinkClass(isActive)} ${isActive ? "nav-news-oval" : ""}`;
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +32,7 @@ export default function Nav() {
               to="/"
               end
               className={({ isActive }) =>
-                `${newsLinkClass(isActive)} absolute left-1/2 -translate-x-1/2`
+                `${baseLinkClass(isActive)} absolute left-1/2 -translate-x-1/2`
               }
             >
               News
@@ -91,9 +90,7 @@ export default function Nav() {
                   <NavLink
                     to={link.to}
                     end={link.end}
-                    className={({ isActive }) =>
-                      link.label === "News" ? newsLinkClass(isActive) : baseLinkClass(isActive)
-                    }
+                    className={({ isActive }) => baseLinkClass(isActive)}
                     onClick={closeMenu}
                   >
                     {link.label}

@@ -35,7 +35,7 @@ export default function Connect() {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="icon-luxe text-ivory/80 transition-colors hover:text-ivory"
+            className="icon-luxe text-white transition-colors hover:text-xray"
             aria-label={label}
           >
             <Icon className="h-8 w-8 md:h-10 md:w-10" />
