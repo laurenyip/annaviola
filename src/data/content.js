@@ -16,9 +16,16 @@ export const IMAGES = {
   cover: `${base}images/silver-secrets-cover.png`,
   pedestalCover: `${base}images/pedestal-cover.png`,
   rightTimeWrongPerson: `${base}images/right-time-wrong-person.png`,
+  parallelLines: `${base}images/parallel-lines.png`,
   logoOrnamentTop: `${base}images/logo-ornament-top.png`,
   ornamentBorderLeft: `${base}images/ornament-border-left.png`,
   ornamentBorderRight: `${base}images/ornament-border-right.png`,
+};
+
+export const VIDEOS = {
+  silverSecrets: `${base}videos/silver-secrets.mov`,
+  rightTimeWrongPerson: `${base}videos/right-time-wrong-person.mov`,
+  parallelLines: `${base}videos/parallel-lines.mov`,
 };
 
 export const BIO = [
@@ -38,10 +45,12 @@ export const DEBUT_EP = {
 };
 
 export const NEXT_SINGLE = {
-  title: "New Single",
+  title: "Parallel Lines",
   releaseDate: "August 21, 2026",
   description:
-    "The next single arrives August 21 — a first taste of what's coming before the debut EP.",
+    "The newest single is out now — stream Parallel Lines everywhere.",
+  href: LINKS.parallelLines,
+  cta: "Listen",
 };
 
 export const DOCUMENTARY = {
@@ -53,18 +62,28 @@ export const DOCUMENTARY = {
 
 export const SINGLES = [
   {
+    title: "Parallel Lines",
+    year: "2026",
+    type: "Single",
+    image: IMAGES.parallelLines,
+    canvas: VIDEOS.parallelLines,
+    href: LINKS.parallelLines,
+    isNew: true,
+  },
+  {
     title: "Right Time, Wrong Person",
     year: "2026",
     type: "Single",
     image: IMAGES.rightTimeWrongPerson,
+    canvas: VIDEOS.rightTimeWrongPerson,
     href: LINKS.rightTimeWrongPerson,
-    isNew: true,
   },
   {
     title: "Silver Secrets",
     year: "2026",
     type: "Single",
     image: IMAGES.cover,
+    canvas: VIDEOS.silverSecrets,
     href: LINKS.silverSecrets,
   },
   {
@@ -78,11 +97,14 @@ export const SINGLES = [
 
 export const UPDATES = [
   {
-    id: "next-single-aug-2026",
+    id: "parallel-lines",
     date: "August 21, 2026",
     section: "Releases",
-    headline: "New Single — Out August 21",
-    dek: "The next single arrives August 21 — a first taste of what's coming before the debut EP.",
+    headline: "Parallel Lines — Out Now",
+    dek: "The newest single is here. Stream Parallel Lines everywhere.",
+    image: IMAGES.parallelLines,
+    href: LINKS.parallelLines,
+    cta: "Listen",
   },
   {
     id: "ep-november-2026",
@@ -102,8 +124,16 @@ export const UPDATES = [
 
 export const TRACKS = [
   {
-    title: "Silver Secrets",
+    title: "Parallel Lines",
     trackNumber: "01",
+    year: "2026",
+    blurb: "Just dropped — two paths that never meet. Stream the new single now.",
+    href: LINKS.parallelLines,
+    isNew: true,
+  },
+  {
+    title: "Silver Secrets",
+    trackNumber: "02",
     year: "2026",
     blurb:
       "The title track — poetry turned melody, silver linings wrapped in vulnerability.",
@@ -111,7 +141,7 @@ export const TRACKS = [
   },
   {
     title: "Pedestal",
-    trackNumber: "02",
+    trackNumber: "03",
     year: "2025",
     blurb:
       "A confession about admiration from a distance — longing set to a slow burn.",
@@ -119,29 +149,38 @@ export const TRACKS = [
   },
   {
     title: "Right Time, Wrong Person",
-    trackNumber: "03",
+    trackNumber: "04",
     year: "2026",
     blurb:
-      "Just dropped — when the heart is right but the moment isn't. Stream the new single now.",
+      "When the heart is right but the moment isn't. Stream it everywhere.",
     href: LINKS.rightTimeWrongPerson,
-    isNew: true,
   },
 ];
 
 export const DISCOGRAPHY = [
   {
+    title: "Parallel Lines",
+    year: "2026",
+    type: "Single",
+    image: IMAGES.parallelLines,
+    canvas: VIDEOS.parallelLines,
+    href: LINKS.parallelLines,
+    isNew: true,
+  },
+  {
     title: "Right Time, Wrong Person",
     year: "2026",
     type: "Single",
     image: IMAGES.rightTimeWrongPerson,
+    canvas: VIDEOS.rightTimeWrongPerson,
     href: LINKS.rightTimeWrongPerson,
-    isNew: true,
   },
   {
     title: "Silver Secrets",
     year: "2026",
     type: "EP",
     image: IMAGES.cover,
+    canvas: VIDEOS.silverSecrets,
     href: LINKS.silverSecrets,
   },
   {

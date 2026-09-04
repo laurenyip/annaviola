@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import PageLogo from "../components/PageLogo";
 import { InstagramIcon, TikTokIcon, YouTubeIcon, SpotifyIcon } from "../components/icons";
 import { LINKS } from "../data/links";
 
@@ -20,10 +19,8 @@ export default function Connect() {
         path="/connect"
       />
 
-      <PageLogo variant="light" />
-
       <motion.nav
-        className="mt-14 flex items-center justify-center gap-10 md:gap-14"
+        className="flex items-center justify-center gap-10 md:gap-14"
         aria-label="Social media"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

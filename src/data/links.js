@@ -15,6 +15,7 @@ export const LINKS = {
     "https://open.spotify.com/track/3XzgbUIZEdn8l1VC0FGE7F?si=ea49e8e7bdf64b6e",
   rightTimeWrongPerson:
     "https://music.apple.com/ca/album/right-time-wrong-person-single/6781632146",
+  parallelLines: "https://push.fm/fl/annaviolaparallellines",
   photos: "https://drive.google.com/drive/folders/1HyIB6wQiCFmjwTr2-E5C415AXBu2Eoxg",
 };
 

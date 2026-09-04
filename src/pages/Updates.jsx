@@ -101,7 +101,7 @@ export default function Updates() {
     <div className="newspaper-page min-h-screen bg-ink px-6 py-16 md:py-24">
       <Seo
         title="Updates"
-        description="News, releases, and announcements from Anna Viola — Silver Secrets EP, music videos, and more."
+        description="News, releases, and announcements from Anna Viola — Parallel Lines, Silver Secrets EP, and more."
         path="/updates"
       />
 

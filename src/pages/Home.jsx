@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import PageLogo from "../components/PageLogo";
 import SequinEmbroideryBorder from "../components/SequinEmbroideryBorder";
 import {
   DEBUT_EP,
   DOCUMENTARY,
   IMAGES,
-  NEXT_SINGLE,
   SINGLES,
 } from "../data/content";
 
@@ -74,19 +72,15 @@ function NewspaperHeadline({ kicker, date, headline, dek, href, cta }) {
   );
 }
 
-function SingleRow({ single, prominent = false }) {
+function SingleRow({ single }) {
   const inner = (
     <div className="flex items-center gap-4">
-      <div
-        className={`img-zoom-wrap shrink-0 overflow-hidden border border-white/10 bg-white/5 ${
-          prominent ? "h-24 w-24" : "h-[4.5rem] w-[4.5rem]"
-        }`}
-      >
+      <div className="h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden bg-white/5 sm:h-20 sm:w-20">
         {single.image ? (
           <img
             src={single.image}
             alt=""
-            className="photo-bw img-zoom h-full w-full object-cover"
+            className="photo-bw h-full w-full object-cover"
           />
         ) : (
           <div className="flex h-full items-center justify-center">
@@ -96,29 +90,29 @@ function SingleRow({ single, prominent = false }) {
       </div>
 
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-2">
-          {single.isNew && (
-            <span className="rounded-full border border-xray/40 px-2.5 py-0.5 font-body text-[11px] tracking-[0.15em] text-xray uppercase">
-              New
-            </span>
-          )}
-          <span className="font-body text-xs tracking-[0.2em] text-white/70 uppercase">
-            {single.type}
+        {single.isNew && (
+          <span className="mb-1 inline-block font-body text-[11px] tracking-[0.15em] text-xray uppercase">
+            New
           </span>
-        </div>
-        <h3
-          className={`mt-0.5 font-display tracking-wide text-ivory ${
-            prominent ? "text-2xl" : "text-lg"
-          }`}
-        >
+        )}
+        <h3 className="font-display text-2xl tracking-wide text-ivory sm:text-3xl">
           {single.title}
         </h3>
-        <p className="font-body text-[13px] text-white/65">{single.year}</p>
       </div>
 
       {single.href && (
-        <span className="shrink-0 font-body text-xs tracking-[0.1em] text-white/65 uppercase group-hover:text-xray">
-          →
+        <span
+          className="shrink-0 text-white transition-colors group-hover:text-xray"
+          aria-hidden="true"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 1.5C12.9 7.2 16.8 11.1 22.5 12 16.8 12.9 12.9 16.8 12 22.5 11.1 16.8 7.2 12.9 1.5 12 7.2 11.1 11.1 7.2 12 1.5Z" />
+          </svg>
         </span>
       )}
     </div>
@@ -145,34 +139,25 @@ export default function Home() {
     <div className="newspaper-page relative min-h-screen bg-black">
       <Seo
         title="Anna Viola"
-        description="Anna Viola — next single out August 21, debut EP Silver Secrets and documentary arriving November 2026."
+        description="Anna Viola — debut EP Silver Secrets and documentary arriving November 2026."
         path="/"
       />
 
       <SequinEmbroideryBorder />
 
       <div className="relative z-10 mx-auto max-w-lg px-6 py-10 md:py-14">
-        <PageLogo variant="light" ornament className="mb-8" />
-
         <HeroPortrait />
 
         <motion.section className="mt-10 border-t-2 border-white/25 pt-8" {...sectionReveal}>
           <h1 className="newspaper-kicker text-center font-body text-sm tracking-[0.3em] text-xray uppercase">
             Releases
           </h1>
-          <div className="mt-6 space-y-8 divide-y divide-white/20">
+          <div className="mt-6">
             <NewspaperHeadline
-              date={NEXT_SINGLE.releaseDate}
-              headline={NEXT_SINGLE.title}
-              dek={NEXT_SINGLE.description}
+              date={DEBUT_EP.releaseDate}
+              headline={`${DEBUT_EP.title} — Debut ${DEBUT_EP.type}`}
+              dek="The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability."
             />
-            <div className="pt-8">
-              <NewspaperHeadline
-                date={DEBUT_EP.releaseDate}
-                headline={`${DEBUT_EP.title} — Debut ${DEBUT_EP.type}`}
-                dek="The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability."
-              />
-            </div>
           </div>
         </motion.section>
 

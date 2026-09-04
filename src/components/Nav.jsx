@@ -1,106 +1,52 @@
-import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import PageLogo from "./PageLogo";
+import { InstagramIcon, TikTokIcon, YouTubeIcon, SpotifyIcon } from "./icons";
+import { LINKS } from "../data/links";
 
-const MOBILE_LINKS = [
-  { to: "/music", label: "Listen" },
-  { to: "/", label: "News", end: true },
-  { to: "/connect", label: "Follow" },
+const SOCIAL = [
+  { href: LINKS.tiktok, label: "TikTok", icon: TikTokIcon },
+  { href: LINKS.instagram, label: "Instagram", icon: InstagramIcon },
+  { href: LINKS.youtube, label: "YouTube", icon: YouTubeIcon },
+  { href: LINKS.spotify, label: "Spotify", icon: SpotifyIcon },
 ];
 
-const baseLinkClass = (isActive) =>
-  `nav-link font-display text-[1.6rem] tracking-wide transition-opacity duration-200 md:text-[2.4rem] ${
+const linkClass = (isActive) =>
+  `nav-link font-display text-xl tracking-wide transition-opacity duration-200 sm:text-[1.6875rem] md:text-3xl ${
     isActive
       ? "text-white opacity-100 underline decoration-1 underline-offset-8"
       : "text-ivory/80 hover:text-white hover:opacity-100"
   }`;
 
 export default function Nav() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = () => setMenuOpen(false);
-
   return (
-    <>
-      <header className="fixed inset-x-0 top-0 z-50 bg-black">
-        <nav className="relative flex h-20 w-full items-center px-3 md:h-[5.5rem] md:px-5">
-          <div className="hidden w-full items-center md:flex">
-            <NavLink to="/music" className={({ isActive }) => baseLinkClass(isActive)}>
-              Listen
-            </NavLink>
+    <header className="fixed inset-x-0 top-0 z-50 bg-black">
+      <nav className="relative flex h-[7.125rem] w-full items-center justify-between px-4 sm:h-[7.875rem] sm:px-6 md:h-36 md:px-8 lg:px-10">
+        <NavLink to="/music" className={({ isActive }) => linkClass(isActive)}>
+          Listen
+        </NavLink>
 
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                `${baseLinkClass(isActive)} absolute left-1/2 -translate-x-1/2`
-              }
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <PageLogo variant="light" compact />
+        </div>
+
+        <div
+          className="flex items-center gap-3 sm:gap-4 md:gap-5"
+          aria-label="Social media"
+        >
+          {SOCIAL.map(({ href, label, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="icon-luxe text-ivory/85 transition-colors hover:text-white"
+              aria-label={label}
             >
-              News
-            </NavLink>
-
-            <NavLink
-              to="/connect"
-              className={({ isActive }) => `${baseLinkClass(isActive)} ml-auto`}
-            >
-              Follow
-            </NavLink>
-          </div>
-
-          <button
-            type="button"
-            className="ml-auto flex h-10 w-10 flex-col items-center justify-center gap-1.5 md:hidden"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-          >
-            <span className="block h-px w-5 bg-ivory" />
-            <span className="block h-px w-5 bg-ivory" />
-            <span className="block h-px w-5 bg-ivory" />
-          </button>
-        </nav>
-      </header>
-
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-black md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <button
-              type="button"
-              className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center md:right-5"
-              onClick={closeMenu}
-              aria-label="Close menu"
-            >
-              <span className="absolute block h-px w-5 rotate-45 bg-ivory" />
-              <span className="absolute block h-px w-5 -rotate-45 bg-ivory" />
-            </button>
-
-            <ul className="flex flex-col items-center gap-10">
-              {MOBILE_LINKS.map((link, i) => (
-                <motion.li
-                  key={link.to}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: 0.05 + i * 0.06 }}
-                >
-                  <NavLink
-                    to={link.to}
-                    end={link.end}
-                    className={({ isActive }) => baseLinkClass(isActive)}
-                    onClick={closeMenu}
-                  >
-                    {link.label}
-                  </NavLink>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+              <Icon className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7" />
+            </a>
+          ))}
+        </div>
+      </nav>
+    </header>
   );
 }

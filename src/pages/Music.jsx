@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import PageLogo from "../components/PageLogo";
+import CoverCanvas from "../components/CoverCanvas";
 import { LINKS } from "../data/links";
 import { SINGLES } from "../data/content";
 import {
@@ -40,35 +41,46 @@ function PlatformBadge({ name, icon: Icon, href }) {
   );
 }
 
-function ReleaseCard({ title, year, type, image, href, isNew }) {
+function ReleaseCard({ title, image, canvas, href, isNew }) {
+  const [hovering, setHovering] = useState(false);
+
   const inner = (
     <>
-      <div className="img-zoom-wrap relative aspect-square overflow-hidden bg-white/5">
+      <div className="img-zoom-wrap relative mx-auto aspect-square w-full overflow-hidden">
         {isNew && (
-          <span className="absolute left-3 top-3 z-10 rounded-full border border-xray/40 bg-ink/80 px-2 py-0.5 font-body text-[10px] tracking-[0.15em] text-xray uppercase">
+          <span className="absolute left-2.5 top-2.5 z-10 font-body text-[10px] tracking-[0.15em] text-white uppercase">
             New
           </span>
         )}
         {image ? (
-          <img
-            src={image}
+          <CoverCanvas
+            image={image}
+            canvas={canvas}
+            playing={Boolean(canvas && hovering)}
             alt={`${title} cover`}
-            className="photo-bw img-zoom h-full w-full object-cover"
+            className="h-full w-full"
+            imgClassName="photo-bw img-zoom h-full w-full object-cover"
           />
         ) : (
-          <div className="flex h-full items-center justify-center">
-            <span className="font-display text-3xl text-white/15">{title[0]}</span>
+          <div className="flex h-full items-center justify-center bg-white/5">
+            <span className="font-display text-3xl text-white/30">{title[0]}</span>
           </div>
         )}
       </div>
-      <div className="border-t border-white/10 p-4 group-hover:border-xray/40">
-        <h3 className="font-display text-base text-ivory">{title}</h3>
-        <p className="mt-1 font-body text-xs text-white/45">
-          {year} · {type}
-        </p>
+      <div className="pt-3 text-center">
+        <h3 className="font-display text-base tracking-wide text-white md:text-lg">
+          {title}
+        </h3>
       </div>
     </>
   );
+
+  const hoverHandlers = {
+    onMouseEnter: () => setHovering(true),
+    onMouseLeave: () => setHovering(false),
+    onFocus: () => setHovering(true),
+    onBlur: () => setHovering(false),
+  };
 
   if (href) {
     return (
@@ -76,7 +88,8 @@ function ReleaseCard({ title, year, type, image, href, isNew }) {
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group card-luxe block overflow-hidden rounded border border-white/10 bg-white/[0.03] hover:border-xray/30"
+        className="group block"
+        {...hoverHandlers}
       >
         {inner}
       </motion.a>
@@ -84,7 +97,7 @@ function ReleaseCard({ title, year, type, image, href, isNew }) {
   }
 
   return (
-    <motion.article className="group card-luxe overflow-hidden rounded border border-white/10 bg-white/[0.03] hover:border-xray/30">
+    <motion.article className="group" {...hoverHandlers}>
       {inner}
     </motion.article>
   );
@@ -95,35 +108,29 @@ export default function Music() {
     <div className="bg-ink px-6 py-16 text-ivory md:py-24">
       <Seo
         title="Music"
-        description="Stream Anna Viola — Right Time, Wrong Person, Silver Secrets, Pedestal, and more."
+        description="Stream Anna Viola — Parallel Lines, Right Time, Wrong Person, Silver Secrets, Pedestal, and more."
         path="/music"
       />
       <div className="mx-auto max-w-6xl">
-        <PageLogo variant="light" />
-
-        <motion.div className="mt-8 flex justify-center" {...sectionReveal}>
-          <p className="announcement-ribbon">new album out soon</p>
-        </motion.div>
-
-        <motion.section className="mt-16" {...sectionReveal}>
-          <h2 className="font-display text-2xl tracking-wide text-ivory md:text-3xl">
-            Singles
-          </h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {SINGLES.map((release) => (
-              <ReleaseCard key={release.title} {...release} />
+        <motion.section {...sectionReveal}>
+          <h2 className="sr-only">Streaming platforms</h2>
+          <p className="text-center font-body text-[11px] tracking-[0.3em] text-xray/70 uppercase">
+            stream everywhere
+          </p>
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            {PLATFORMS.map((platform) => (
+              <PlatformBadge key={platform.name} {...platform} />
             ))}
           </div>
         </motion.section>
 
-        <motion.section className="mt-20" {...sectionReveal}>
-          <h2 className="sr-only">Streaming platforms</h2>
-          <p className="font-body text-[11px] tracking-[0.3em] text-xray/70 uppercase">
-            stream everywhere
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
-            {PLATFORMS.map((platform) => (
-              <PlatformBadge key={platform.name} {...platform} />
+        <motion.section className="mt-16" {...sectionReveal}>
+          <h2 className="text-center font-display text-2xl tracking-wide text-white md:text-3xl">
+            Singles
+          </h2>
+          <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:gap-4 md:max-w-3xl md:gap-5">
+            {SINGLES.map((release) => (
+              <ReleaseCard key={release.title} {...release} />
             ))}
           </div>
         </motion.section>

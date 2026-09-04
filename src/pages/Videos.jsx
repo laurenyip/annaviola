@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import PageLogo from "../components/PageLogo";
 import { PlayIcon } from "../components/icons";
 
 const sectionReveal = {
@@ -67,9 +66,7 @@ export default function Videos() {
         path="/videos"
       />
       <div className="mx-auto max-w-6xl">
-        <PageLogo variant="light" />
-
-        <motion.section className="mt-14" {...sectionReveal}>
+        <motion.section {...sectionReveal}>
           <VideoCard {...featured} />
         </motion.section>
 

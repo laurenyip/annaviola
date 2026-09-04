@@ -23,7 +23,7 @@ export default function Layout() {
       <GlitterOverlay />
       <LaceOverlay />
       <Nav />
-      <main id="main-content" className="min-h-screen pt-20 md:pt-[5.5rem]">
+      <main id="main-content" className="min-h-screen pt-[7.125rem] sm:pt-[7.875rem] md:pt-36">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

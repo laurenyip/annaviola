@@ -1,48 +1,43 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { IMAGES } from "../data/content";
 
+/** Site mark — ornament + “anna viola”. Use `compact` in the navbar. */
 export default function PageLogo({
   variant = "dark",
-  ornament = false,
+  compact = false,
   className = "",
 }) {
   const color = variant === "light" ? "text-ivory" : "text-ink";
 
   return (
-    <motion.div
-      className={`flex justify-center ${className}`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-    >
-      {ornament ? (
-        <Link
-          to="/"
-          className="flex w-full max-w-[260px] flex-col items-center transition-opacity hover:opacity-90 sm:max-w-[300px]"
-          aria-label="Anna Viola home"
+    <div className={`flex justify-center ${className}`}>
+      <Link
+        to="/"
+        className={`flex flex-col items-center transition-opacity hover:opacity-90 ${
+          compact
+            ? "w-[11.25rem] sm:w-[14.25rem] md:w-[16.5rem]"
+            : "w-full max-w-[260px] sm:max-w-[300px]"
+        }`}
+        aria-label="Anna Viola home"
+      >
+        <img
+          src={IMAGES.logoOrnamentTop}
+          alt=""
+          className={`mb-0.5 block h-auto w-[88%] select-none ${
+            compact ? "max-h-12 object-contain sm:max-h-[3.75rem] md:max-h-[4.5rem]" : ""
+          }`}
+          draggable={false}
+        />
+        <span
+          className={`font-display leading-none tracking-wide lowercase ${color} ${
+            compact
+              ? "text-lg sm:text-xl md:text-[1.6875rem]"
+              : "text-[1.85rem] sm:text-4xl"
+          }`}
         >
-          <img
-            src={IMAGES.logoOrnamentTop}
-            alt=""
-            className="mb-1 block h-auto w-[85%] select-none sm:w-[90%]"
-            draggable={false}
-          />
-          <span
-            className={`font-display text-[1.85rem] leading-none tracking-wide lowercase sm:text-4xl ${color}`}
-          >
-            anna viola
-          </span>
-        </Link>
-      ) : (
-        <Link
-          to="/"
-          className={`font-display text-5xl tracking-wide transition-opacity hover:opacity-75 md:text-6xl ${color}`}
-          aria-label="Anna Viola home"
-        >
-          Anna Viola
-        </Link>
-      )}
-    </motion.div>
+          anna viola
+        </span>
+      </Link>
+    </div>
   );
 }

@@ -81,7 +81,7 @@ export function ArtistJsonLd() {
       url: siteOrigin,
       genre: ["Pop"],
       description:
-        "Vancouver-based pop artist. Debut EP Silver Secrets — poetry, vulnerability, and glitter.",
+        "Vancouver-based pop artist. Parallel Lines out now — debut EP Silver Secrets coming soon.",
       sameAs: [
         LINKS.linktree,
         LINKS.instagram,
