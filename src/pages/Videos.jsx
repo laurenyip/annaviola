@@ -59,7 +59,7 @@ export default function Videos() {
   const secondGroup = rest.slice(midpoint);
 
   return (
-    <div className="bg-ink px-6 py-16 text-ivory md:py-24">
+    <div className="bg-transparent px-6 py-16 text-ivory md:py-24">
       <Seo
         title="Videos"
         description="Watch Anna Viola music videos, live sessions, and behind-the-scenes footage."

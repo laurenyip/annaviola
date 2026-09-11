@@ -30,7 +30,7 @@ function BorderSide({ side, src }) {
             key={i}
             src={src}
             alt=""
-            className="h-auto w-full max-w-[4.5rem] select-none object-contain opacity-90 lg:max-w-[5.5rem]"
+            className="h-auto w-full max-w-[4.5rem] select-none object-contain opacity-95 lg:max-w-[5.5rem]"
             draggable={false}
           />
         ))}

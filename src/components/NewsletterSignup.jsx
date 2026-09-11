@@ -7,7 +7,11 @@ const inputClass =
 /**
  * Email signup — posts to Buttondown when configured, otherwise opens a mailto fallback.
  */
-export default function NewsletterSignup({ className = "", compact = false }) {
+export default function NewsletterSignup({
+  className = "",
+  compact = false,
+  id = "newsletter-email",
+}) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
   const [message, setMessage] = useState("");
@@ -57,11 +61,11 @@ export default function NewsletterSignup({ className = "", compact = false }) {
         className={compact ? "flex flex-col gap-3 sm:flex-row" : "space-y-3"}
         noValidate
       >
-        <label htmlFor="newsletter-email" className="sr-only">
+        <label htmlFor={id} className="sr-only">
           Email address
         </label>
         <input
-          id="newsletter-email"
+          id={id}
           type="email"
           name="email"
           value={email}

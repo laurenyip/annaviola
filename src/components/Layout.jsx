@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import GlitterOverlay from "./GlitterOverlay";
 import LaceOverlay from "./LaceOverlay";
 import Nav from "./Nav";
+import NewsletterBand from "./NewsletterBand";
 import Footer from "./Footer";
 import KonamiOverlay from "./easter-eggs/KonamiOverlay";
 import { ArtistJsonLd } from "./Seo";
@@ -23,7 +24,7 @@ export default function Layout() {
       <GlitterOverlay />
       <LaceOverlay />
       <Nav />
-      <main id="main-content" className="min-h-screen pt-[7.125rem] sm:pt-[7.875rem] md:pt-36">
+      <main id="main-content" className="relative z-10 min-h-screen pt-[7.125rem] sm:pt-[7.875rem] md:pt-36">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
@@ -36,6 +37,7 @@ export default function Layout() {
           </motion.div>
         </AnimatePresence>
       </main>
+      <NewsletterBand />
       <Footer />
     </>
   );

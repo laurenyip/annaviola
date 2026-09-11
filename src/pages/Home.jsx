@@ -136,7 +136,7 @@ function SingleRow({ single }) {
 
 export default function Home() {
   return (
-    <div className="newspaper-page relative min-h-screen bg-black">
+    <div className="newspaper-page relative min-h-screen">
       <Seo
         title="Anna Viola"
         description="Anna Viola — debut EP Silver Secrets and documentary arriving November 2026."
