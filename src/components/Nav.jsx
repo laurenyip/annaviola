@@ -19,7 +19,11 @@ const linkClass = (isActive) =>
 
 export default function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-black">
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -bottom-10 -z-10 bg-[linear-gradient(to_right,rgba(0,0,0,0.5),#000_22%,#000_78%,rgba(0,0,0,0.5))] [-webkit-mask-image:linear-gradient(to_bottom,#000_calc(100%-3.5rem),transparent)] [mask-image:linear-gradient(to_bottom,#000_calc(100%-3.5rem),transparent)]"
+      />
       <nav className="relative flex h-[7.125rem] w-full items-center justify-between px-4 sm:h-[7.875rem] sm:px-6 md:h-36 md:px-8 lg:px-10">
         <NavLink to="/music" className={({ isActive }) => linkClass(isActive)}>
           Listen
