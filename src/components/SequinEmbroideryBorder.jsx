@@ -21,16 +21,19 @@ function BorderSide({ side, src }) {
       aria-hidden="true"
     >
       <div
-        className={`flex h-full flex-col items-center justify-center py-8 ${
+        className={`flex h-full flex-col items-center justify-evenly py-8 ${
           isRight ? "pr-1 lg:pr-2" : "pl-1 lg:pl-2"
         }`}
       >
-        <img
-          src={src}
-          alt=""
-          className="h-auto w-full max-w-[4.5rem] select-none object-contain opacity-55 lg:max-w-[5.5rem]"
-          draggable={false}
-        />
+        {[0, 1, 2].map((i) => (
+          <img
+            key={i}
+            src={src}
+            alt=""
+            className="h-auto w-full max-w-[4.5rem] select-none object-contain opacity-95 lg:max-w-[5.5rem]"
+            draggable={false}
+          />
+        ))}
       </div>
     </div>
   );
