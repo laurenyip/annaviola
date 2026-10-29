@@ -85,6 +85,7 @@ export const SINGLES = [
     image: IMAGES.cover,
     canvas: VIDEOS.silverSecrets,
     href: LINKS.silverSecrets,
+    note: "Title track from the EP",
   },
   {
     title: "Pedestal",

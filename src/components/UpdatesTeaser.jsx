@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import NewsletterSignup from "./NewsletterSignup";
 import { UPDATES } from "../data/content";
@@ -29,12 +28,6 @@ export default function UpdatesTeaser() {
               Latest
             </h2>
           </div>
-          <Link
-            to="/updates"
-            className="font-body text-[11px] tracking-[0.15em] text-white/45 uppercase underline decoration-xray/30 underline-offset-4 hover:text-xray"
-          >
-            All updates →
-          </Link>
         </div>
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16">

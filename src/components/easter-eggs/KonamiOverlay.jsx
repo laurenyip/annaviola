@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import useKonamiCode from "../../hooks/useKonamiCode";
 
@@ -99,11 +99,23 @@ function JewelryBox({ reducedMotion }) {
 export default function KonamiOverlay() {
   const { isActive, dismiss } = useKonamiCode();
   const prefersReducedMotion = useReducedMotion();
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (!isActive) return undefined;
+    buttonRef.current?.focus();
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") dismiss();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isActive, dismiss]);
 
   return (
     <AnimatePresence>
       {isActive && (
         <motion.button
+          ref={buttonRef}
           type="button"
           className="fixed inset-0 z-50 flex cursor-pointer flex-col items-center justify-center bg-ink px-6"
           initial={{ opacity: 0 }}
@@ -123,7 +135,7 @@ export default function KonamiOverlay() {
             you found a secret ✦
           </motion.p>
           <p className="mt-6 font-body text-xs tracking-widest text-ivory/30 uppercase">
-            click anywhere to close
+            click anywhere or press esc to close
           </p>
         </motion.button>
       )}

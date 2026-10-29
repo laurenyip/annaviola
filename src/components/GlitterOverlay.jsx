@@ -1,9 +1,13 @@
 import { useMemo } from "react";
 
+/**
+ * Drifting glitter specks. Sits above the lace but below page content (z-10),
+ * and from md up is masked out of the centre reading column (see .glitter-field).
+ */
 export default function GlitterOverlay() {
   const specks = useMemo(
     () =>
-      Array.from({ length: 64 }, (_, i) => ({
+      Array.from({ length: 24 }, (_, i) => ({
         id: i,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
@@ -18,7 +22,7 @@ export default function GlitterOverlay() {
 
   return (
     <div
-      className="pointer-events-none fixed inset-0 z-[9998] overflow-hidden"
+      className="glitter-field pointer-events-none fixed inset-0 z-[1] overflow-hidden"
       aria-hidden="true"
     >
       {specks.map((s) => (

@@ -409,13 +409,24 @@
     }
   }
 
-  .footer-legal-row {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .footer-legal-row::-webkit-scrollbar {
-    display: none;
+  /* Keep glitter out of the centre reading column on wide screens. */
+  @media (min-width: 768px) {
+    .glitter-field {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        #000 calc(50% - 30rem),
+        transparent calc(50% - 26rem),
+        transparent calc(50% + 26rem),
+        #000 calc(50% + 30rem)
+      );
+      mask-image: linear-gradient(
+        to right,
+        #000 calc(50% - 30rem),
+        transparent calc(50% - 26rem),
+        transparent calc(50% + 26rem),
+        #000 calc(50% + 30rem)
+      );
+    }
   }
 
   .announcement-ribbon {

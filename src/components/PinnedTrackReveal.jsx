@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 import CursorSheen from "./CursorSheen";
 import { DEBUT_EP, TRACKS } from "../data/content";
 
@@ -15,7 +15,6 @@ function TrackSlide({ track, opacity, scale }) {
     <motion.div
       className="absolute inset-0 flex items-center"
       style={{ opacity, scale }}
-      aria-hidden={false}
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
         <div className="text-center lg:text-left">
@@ -103,6 +102,11 @@ export default function PinnedTrackReveal() {
     offset: ["start start", "end end"],
   });
 
+  const [activeIndex, setActiveIndex] = useState(0);
+  useMotionValueEvent(scrollYProgress, "change", (v) => {
+    setActiveIndex(Math.min(TRACKS.length - 1, Math.max(0, Math.floor(v * TRACKS.length))));
+  });
+
   const scrollHeight = `${TRACKS.length * 100}vh`;
 
   return (
@@ -158,8 +162,8 @@ export default function PinnedTrackReveal() {
               {TRACKS.map((track, i) => (
                 <div
                   key={track.title}
-                  className="h-1 w-6 rounded-full bg-white/20"
-                  style={{ opacity: 0.4 + (i === 0 ? 0.6 : 0) }}
+                  className="h-1 w-6 rounded-full bg-white/20 transition-opacity duration-300"
+                  style={{ opacity: i === activeIndex ? 1 : 0.4 }}
                 />
               ))}
             </div>
