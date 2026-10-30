@@ -12,7 +12,7 @@ const SOCIAL = [
 
 export default function Connect() {
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center bg-transparent px-6 py-20 text-ivory md:min-h-[calc(100vh-4.5rem)]">
+    <div className="flex min-h-[calc(100svh-4rem)] flex-col items-center justify-center bg-transparent px-6 py-20 text-ivory md:min-h-[calc(100svh-4.5rem)]">
       <Seo
         title="Follow"
         description="Follow Anna Viola on TikTok, Instagram, YouTube, and Spotify."

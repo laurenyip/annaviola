@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NEWSLETTER } from "../data/links";
 
 const inputClass =
-  "w-full border border-white/15 bg-white/5 px-4 py-3 font-body text-sm text-ivory placeholder:text-white/30 focus:border-xray focus:outline-none focus:ring-1 focus:ring-xray/40 aria-[invalid=true]:border-red-400/70";
+  "w-full border border-white/15 bg-white/5 px-4 py-3 font-body text-base text-ivory placeholder:text-white/30 focus:border-xray focus:outline-none focus:ring-1 focus:ring-xray/40 aria-[invalid=true]:border-red-400/70";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -99,6 +99,10 @@ export default function NewsletterSignup({
           placeholder="your@email.com"
           required
           autoComplete="email"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          enterKeyHint="send"
           aria-invalid={isError || undefined}
           aria-describedby={message ? messageId : undefined}
           className={compact ? `${inputClass} sm:flex-1` : inputClass}

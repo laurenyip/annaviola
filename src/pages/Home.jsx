@@ -137,7 +137,7 @@ function SingleRow({ single }) {
         href={single.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block border-b border-white/10 py-4 transition-colors hover:border-xray/50"
+        className="group block select-none border-b border-white/10 py-4 transition-colors hover:border-xray/50"
       >
         {inner}
       </a>
@@ -149,7 +149,7 @@ function SingleRow({ single }) {
 
 export default function Home() {
   return (
-    <div className="newspaper-page relative min-h-screen">
+    <div className="newspaper-page relative min-h-svh">
       <Seo
         title="Anna Viola"
         description={`Anna Viola — debut EP ${DEBUT_EP.title} and documentary arriving ${DEBUT_EP.releaseDate}.`}

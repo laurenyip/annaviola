@@ -24,7 +24,7 @@ export default function Layout() {
       <LaceOverlay />
       <GlitterOverlay />
       <Nav />
-      <main id="main-content" className="relative z-10 min-h-screen pt-[4.5rem] sm:pt-24 md:pt-[6.5rem]">
+      <main id="main-content" className="relative z-10 min-h-svh pt-[calc(4.5rem+env(safe-area-inset-top,0px))] sm:pt-[calc(6rem+env(safe-area-inset-top,0px))] md:pt-[calc(6.5rem+env(safe-area-inset-top,0px))]">
         {/* initial={false}: the first page paints visible; only route changes fade. */}
         <AnimatePresence mode="wait" initial={false}>
           <motion.div

@@ -36,7 +36,7 @@ export default function Seo({
 
     setMeta("name", "description", description);
     setMeta("name", "author", "Anna Viola");
-    setMeta("name", "theme-color", "#0A0A0A");
+    setMeta("name", "theme-color", "#000000");
 
     setMeta("property", "og:title", fullTitle);
     setMeta("property", "og:description", description);

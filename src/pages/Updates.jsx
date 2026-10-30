@@ -98,7 +98,7 @@ export default function Updates() {
   const [featured, ...rest] = UPDATES;
 
   return (
-    <div className="newspaper-page min-h-screen bg-ink px-6 py-16 md:py-24">
+    <div className="newspaper-page min-h-svh bg-ink px-6 py-16 md:py-24">
       <Seo
         title="Updates"
         description="News, releases, and announcements from Anna Viola — Parallel Lines, Silver Secrets EP, and more."

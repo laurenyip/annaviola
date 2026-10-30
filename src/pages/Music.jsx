@@ -105,7 +105,7 @@ function ReleaseCard({ title, image, canvas, href, isNew }) {
 
 export default function Music() {
   return (
-    <div className="relative min-h-[calc(100vh-4rem)] bg-transparent px-6 py-16 text-ivory md:min-h-[calc(100vh-4.5rem)] md:py-24">
+    <div className="relative min-h-[calc(100svh-4rem)] bg-transparent px-6 py-16 text-ivory md:min-h-[calc(100svh-4.5rem)] md:py-24">
       <Seo
         title="Music"
         description="Stream Anna Viola — Parallel Lines, Right Time, Wrong Person, Silver Secrets, Pedestal, and more."

@@ -125,7 +125,7 @@ export default function PinnedTrackReveal() {
 
       <div ref={containerRef} style={{ height: scrollHeight }} className="relative">
         <CursorSheen
-          className="sticky top-0 h-screen"
+          className="sticky top-0 h-dvh"
           intensity={0.08}
           size="150%"
         >

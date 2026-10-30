@@ -47,7 +47,7 @@ export default function Footer() {
       size="180%"
       lag={0.05}
     >
-      <div className="mx-auto max-w-5xl px-6 py-10 text-center">
+      <div className="mx-auto max-w-5xl px-6 pt-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] text-center">
         <SocialLinks className="justify-center gap-2" />
 
         <p className="mt-4 font-display text-lg text-white md:text-xl">

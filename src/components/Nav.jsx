@@ -11,7 +11,7 @@ const linkClass = (isActive) =>
 
 export default function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top,0px)] pl-[env(safe-area-inset-left,0px)] pr-[env(safe-area-inset-right,0px)]">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 -bottom-4 -z-10 bg-[linear-gradient(to_right,rgba(0,0,0,0.5),#000_22%,#000_78%,rgba(0,0,0,0.5))] [-webkit-mask-image:linear-gradient(to_bottom,#000_calc(100%-1rem),transparent)] [mask-image:linear-gradient(to_bottom,#000_calc(100%-1rem),transparent)]"
