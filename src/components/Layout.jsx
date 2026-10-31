@@ -7,6 +7,7 @@ import NewsletterBand from "./NewsletterBand";
 import Footer from "./Footer";
 import KonamiOverlay from "./easter-eggs/KonamiOverlay";
 import { ArtistJsonLd } from "./Seo";
+import DataToggle from "../dev/DataToggle";
 
 export default function Layout() {
   const location = useLocation();
@@ -40,6 +41,7 @@ export default function Layout() {
       </main>
       <NewsletterBand />
       <Footer />
+      {import.meta.env.DEV && <DataToggle />}
     </MotionConfig>
   );
 }

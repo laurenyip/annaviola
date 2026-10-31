@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Static cover art with optional muted canvas video.
@@ -13,6 +13,7 @@ export default function CoverCanvas({
   imgClassName = "photo-bw h-full w-full object-cover",
 }) {
   const videoRef = useRef(null);
+  const [imageFailed, setImageFailed] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -32,8 +33,13 @@ export default function CoverCanvas({
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {image ? (
-        <img src={image} alt={alt} className={imgClassName} />
+      {image && !imageFailed ? (
+        <img
+          src={image}
+          alt={alt}
+          className={imgClassName}
+          onError={() => setImageFailed(true)}
+        />
       ) : (
         <div className="flex h-full w-full items-center justify-center bg-white/5" />
       )}

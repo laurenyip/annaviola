@@ -4,6 +4,7 @@ import Seo from "../components/Seo";
 import CoverCanvas from "../components/CoverCanvas";
 import { LINKS } from "../data/links";
 import { SINGLES } from "../data/content";
+import { devSingles } from "../dev/worstCase";
 import {
   SpotifyIcon,
   AppleMusicIcon,
@@ -124,16 +125,18 @@ export default function Music() {
           </div>
         </motion.section>
 
-        <motion.section className="mt-16" {...sectionReveal}>
-          <h2 className="text-center font-display text-2xl tracking-wide text-white md:text-3xl">
-            Singles
-          </h2>
-          <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:gap-4 md:max-w-3xl md:gap-5">
-            {SINGLES.map((release) => (
-              <ReleaseCard key={release.title} {...release} />
-            ))}
-          </div>
-        </motion.section>
+        {devSingles(SINGLES).length > 0 && (
+          <motion.section className="mt-16" {...sectionReveal}>
+            <h2 className="text-center font-display text-2xl tracking-wide text-white md:text-3xl">
+              Singles
+            </h2>
+            <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:gap-4 md:max-w-3xl md:gap-5">
+              {devSingles(SINGLES).map((release) => (
+                <ReleaseCard key={release.title} {...release} />
+              ))}
+            </div>
+          </motion.section>
+        )}
       </div>
     </div>
   );

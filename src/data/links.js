@@ -20,11 +20,11 @@ export const LINKS = {
 };
 
 /**
- * Email list — set buttondownUsername once your Buttondown account is live.
+ * Email list on Buttondown (buttondown.com/annaviola).
  * Subscribers are tagged "website" in Buttondown.
  */
 export const NEWSLETTER = {
-  buttondownUsername: "",
+  buttondownUsername: "annaviola",
   fallbackEmail: "hello@annaviola.com",
 };
 

@@ -15,7 +15,7 @@ export default function PageLogo({
         to="/"
         className={`flex flex-col items-center transition-opacity hover:opacity-90 ${
           compact
-            ? "w-[7.5rem] sm:w-[11.5rem] md:w-[13rem]"
+            ? "w-[min(7.5rem,32vw)] sm:w-[11.5rem] md:w-[13rem]"
             : "w-full max-w-[260px] sm:max-w-[300px]"
         }`}
         aria-label="Anna Viola home"
@@ -24,14 +24,14 @@ export default function PageLogo({
           src={IMAGES.logoOrnamentTop}
           alt=""
           className={`mb-0.5 block h-auto w-[88%] select-none ${
-            compact ? "max-h-8 object-contain sm:max-h-12 md:max-h-[3.25rem]" : ""
+            compact ? "max-h-[min(2rem,12vw)] object-contain sm:max-h-12 md:max-h-[3.25rem]" : ""
           }`}
           draggable={false}
         />
         <span
           className={`font-display leading-none tracking-wide lowercase ${color} ${
             compact
-              ? "text-base sm:text-lg md:text-xl"
+              ? "text-[min(1rem,5vw)] sm:text-lg md:text-xl"
               : "text-[1.85rem] sm:text-4xl"
           }`}
         >

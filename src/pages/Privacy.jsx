@@ -8,6 +8,7 @@ const sections = [
     body: [
       "Anna Viola is based in Vancouver, British Columbia. This website is operated from Canada.",
       "If you subscribe to updates or contact us by email, we use your information only to respond to you, send news about releases and shows, and improve this site. We do not sell personal information.",
+      "Our email list runs on Buttondown (buttondown.com). When you subscribe, your email address is sent to and stored by Buttondown so we can send you updates, and Buttondown handles it under its own privacy policy.",
       "We may use basic analytics to understand how visitors use annaviola.com. Any third-party tools we use are configured to minimize personal data collection where possible.",
     ],
   },

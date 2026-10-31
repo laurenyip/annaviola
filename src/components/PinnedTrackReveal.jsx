@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
-import CursorSheen from "./CursorSheen";
 import { DEBUT_EP, TRACKS } from "../data/content";
 
 const sectionReveal = {
@@ -124,11 +123,7 @@ export default function PinnedTrackReveal() {
       </div>
 
       <div ref={containerRef} style={{ height: scrollHeight }} className="relative">
-        <CursorSheen
-          className="sticky top-0 h-dvh"
-          intensity={0.08}
-          size="150%"
-        >
+        <div className="sticky top-0 h-dvh">
           <div className="relative flex h-full items-center overflow-hidden">
           <div
             className="pointer-events-none absolute inset-0 opacity-20"
@@ -172,7 +167,7 @@ export default function PinnedTrackReveal() {
             </span>
           </div>
           </div>
-        </CursorSheen>
+        </div>
       </div>
     </motion.section>
   );

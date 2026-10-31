@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import CursorSheen from "./CursorSheen";
 import SocialLinks from "./SocialLinks";
 
 const PRIMARY_LINKS = [
@@ -39,14 +38,7 @@ function LinkRow({ links, sizeClass }) {
 
 export default function Footer() {
   return (
-    <CursorSheen
-      as="footer"
-      className="relative z-10 border-t border-white/10 bg-ink text-ivory"
-      intensity={0.05}
-      blueIntensity={0.08}
-      size="180%"
-      lag={0.05}
-    >
+    <footer className="relative z-10 border-t border-white/10 bg-ink text-ivory">
       <div className="mx-auto max-w-5xl px-6 pt-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] text-center">
         <SocialLinks className="justify-center gap-2" />
 
@@ -59,6 +51,6 @@ export default function Footer() {
           <LinkRow links={PRIVACY_LINKS} sizeClass="text-xs md:text-sm" />
         </nav>
       </div>
-    </CursorSheen>
+    </footer>
   );
 }

@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import SequinEmbroideryBorder from "../components/SequinEmbroideryBorder";
 import SocialLinks from "../components/SocialLinks";
+import { devSingles } from "../dev/worstCase";
 import {
   DEBUT_EP,
   DOCUMENTARY,
@@ -79,22 +81,44 @@ function NewspaperHeadline({ kicker, date, headline, dek, href, cta }) {
   );
 }
 
+function ListenLabel({ className }) {
+  return (
+    <span
+      className={`items-center gap-1.5 font-body text-xs tracking-[0.15em] text-white/80 uppercase transition-colors group-hover:text-xray ${className}`}
+    >
+      Listen
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="currentColor"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M12 1.5C12.9 7.2 16.8 11.1 22.5 12 16.8 12.9 12.9 16.8 12 22.5 11.1 16.8 7.2 12.9 1.5 12 7.2 11.1 11.1 7.2 12 1.5Z" />
+      </svg>
+      <span className="sr-only">(opens in a new tab)</span>
+    </span>
+  );
+}
+
 function SingleRow({ single }) {
+  const [imageFailed, setImageFailed] = useState(false);
   const meta = [single.type, single.year, single.note].filter(Boolean).join(" · ");
 
   const inner = (
     <div className="flex items-center gap-4">
       <div className="h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden bg-white/5 sm:h-20 sm:w-20">
-        {single.image ? (
+        {single.image && !imageFailed ? (
           <img
             src={single.image}
             alt=""
             loading="lazy"
-            className="photo-bw h-full w-full object-cover transition duration-500 ease-out group-hover:scale-[1.06] group-hover:brightness-125"
+            onError={() => setImageFailed(true)}
+            className="photo-bw h-full w-full object-cover transition-[transform,filter] duration-500 ease-out group-hover:scale-[1.06] group-hover:brightness-125"
           />
         ) : (
           <div className="flex h-full items-center justify-center">
-            <span className="font-display text-lg text-white/60">{single.title?.charAt(0) ?? ""}</span>
+            <span className="font-display text-lg text-white/60">{Array.from(single.title ?? "")[0]}</span>
           </div>
         )}
       </div>
@@ -105,29 +129,17 @@ function SingleRow({ single }) {
             New
           </span>
         )}
-        <h3 className="font-display text-2xl tracking-wide text-ivory transition-colors group-hover:text-white sm:text-3xl">
+        <h3 className="font-display text-2xl tracking-wide text-ivory transition-colors [overflow-wrap:anywhere] group-hover:text-white sm:text-3xl">
           {single.title}
         </h3>
         {meta && (
           <p className="mt-1 font-body text-xs tracking-[0.08em] text-white/60">{meta}</p>
         )}
+        {/* Under the title on phones, so long titles keep the full column width. */}
+        {single.href && <ListenLabel className="mt-2 flex sm:hidden" />}
       </div>
 
-      {single.href && (
-        <span className="flex shrink-0 items-center gap-1.5 font-body text-xs tracking-[0.15em] text-white/80 uppercase transition-colors group-hover:text-xray">
-          Listen
-          <svg
-            viewBox="0 0 24 24"
-            className="h-4 w-4"
-            fill="currentColor"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M12 1.5C12.9 7.2 16.8 11.1 22.5 12 16.8 12.9 12.9 16.8 12 22.5 11.1 16.8 7.2 12.9 1.5 12 7.2 11.1 11.1 7.2 12 1.5Z" />
-          </svg>
-          <span className="sr-only">(opens in a new tab)</span>
-        </span>
-      )}
+      {single.href && <ListenLabel className="hidden shrink-0 sm:flex" />}
     </div>
   );
 
@@ -148,6 +160,8 @@ function SingleRow({ single }) {
 }
 
 export default function Home() {
+  const singles = devSingles(SINGLES);
+
   return (
     <div className="newspaper-page relative min-h-svh">
       <Seo
@@ -176,14 +190,16 @@ export default function Home() {
           </div>
         </motion.section>
 
-        <motion.section className="mt-10" {...sectionReveal}>
-          <h2 className="newspaper-kicker mb-2 text-center font-body text-xs tracking-[0.3em] text-white/75 uppercase">
-            Singles
-          </h2>
-          {SINGLES.map((single) => (
-            <SingleRow key={single.title} single={single} />
-          ))}
-        </motion.section>
+        {singles.length > 0 && (
+          <motion.section className="mt-10" {...sectionReveal}>
+            <h2 className="newspaper-kicker mb-2 text-center font-body text-xs tracking-[0.3em] text-white/75 uppercase">
+              Singles
+            </h2>
+            {singles.map((single) => (
+              <SingleRow key={single.title} single={single} />
+            ))}
+          </motion.section>
+        )}
 
         <motion.section className="mt-10 border-t border-white/10 pt-8 pb-4" {...sectionReveal}>
           <NewspaperHeadline
