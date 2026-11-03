@@ -1,0 +1,11 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Static site on Cloudflare Workers: serve the Vite build from dist/.
+  "name": "annaviola",
+  "compatibility_date": "2025-09-23",
+  "assets": {
+    "directory": "./dist",
+    // Client-side routes (/music, /privacy…) load index.html; React Router takes over.
+    "not_found_handling": "single-page-application"
+  }
+}
