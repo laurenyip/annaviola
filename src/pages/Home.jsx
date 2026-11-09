@@ -175,7 +175,7 @@ export default function Home() {
       <div className="relative z-10 mx-auto max-w-lg px-6 py-10 md:py-14">
         <HeroPortrait />
         {/* The header has no room for socials on phones, so they sit under the portrait there. */}
-        <SocialLinks className="mt-3 justify-center gap-2 sm:hidden" />
+        <SocialLinks className="mt-3 justify-center gap-2 lg:hidden" />
 
         <motion.section className="mt-10 border-t-2 border-white/25 pt-8" {...sectionReveal}>
           <h1 className="newspaper-kicker text-center font-body text-sm tracking-[0.3em] text-xray uppercase">

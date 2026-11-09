@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import { PlayIcon } from "../components/icons";
+import { LINKS } from "../data/links";
 
 const sectionReveal = {
   initial: { opacity: 0, y: 40 },
@@ -9,13 +9,20 @@ const sectionReveal = {
   transition: { duration: 0.7, ease: "easeOut" },
 };
 
-const VIDEOS = [
-  { id: "v1", title: "Golden Vanity — Official Music Video", embedId: "dQw4w9WgXcQ" },
-  { id: "v2", title: "Velvet Hour (Live Session)", embedId: "dQw4w9WgXcQ" },
-  { id: "v3", title: "Behind the Album: Bombay Nights", embedId: "dQw4w9WgXcQ" },
-  { id: "v4", title: "Vanity Mirror — Lyric Video", embedId: "dQw4w9WgXcQ" },
-  { id: "v5", title: "Starlight Sari — Acoustic", embedId: "dQw4w9WgXcQ" },
-  { id: "v6", title: "Making of the Golden Vanity Cover", embedId: "dQw4w9WgXcQ" },
+/** From youtube.com/@annaviolaaa. The channel's only full-length video. */
+const FEATURED = {
+  embedId: "0A9ni6P3u1A",
+  title: "Silver Secrets — Official Lyric Video",
+};
+
+/** Song-related Shorts from the channel, titles as she wrote them (hashtags dropped). */
+const SHORTS = [
+  { embedId: "ixxu_npSZDI", title: "Parallel Lines" },
+  { embedId: "_fIDWK0eYiY", title: "we’ll always be parallel lines" },
+  { embedId: "iIaWXrdm3Kg", title: "unravelled scenes" },
+  { embedId: "vixQCGFVIBM", title: "you emptied me clean" },
+  { embedId: "XxZBPndmPg8", title: "loving the wrong person can almost delete you" },
+  { embedId: "qW_-iyQGl0M", title: "it’s always right time wrong person" },
 ];
 
 function StarDivider() {
@@ -28,66 +35,68 @@ function StarDivider() {
   );
 }
 
-function VideoCard({ title, embedId }) {
+function VideoEmbed({ embedId, title, vertical = false }) {
   return (
-    <article className="group mb-6 break-inside-avoid">
-      <div className="card-luxe overflow-hidden rounded border border-transparent transition-colors duration-500 focus-within:border-silver hover:border-silver">
-        <div className="img-zoom-wrap relative aspect-video overflow-hidden bg-ink/50">
-          <iframe
-            className="absolute inset-0 h-full w-full transition-transform duration-700 ease-luxe group-hover:scale-[1.03]"
-            src={`https://www.youtube.com/embed/${embedId}`}
-            title={title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 backdrop-blur-[1px] transition-all duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
-            <PlayIcon className="h-10 w-10 scale-90 text-ivory transition-transform duration-500 ease-luxe-out group-hover:scale-100" />
-          </div>
-        </div>
-        <p className="mt-3 font-body text-sm text-ivory/80 transition-colors duration-300 group-hover:text-silver">
-          {title}
-        </p>
+    <article>
+      <div
+        className={`relative overflow-hidden rounded bg-ink/50 ${
+          vertical ? "aspect-[9/16]" : "aspect-video"
+        }`}
+      >
+        {/* youtube-nocookie: no YouTube cookies until a visitor presses play. */}
+        <iframe
+          className="absolute inset-0 h-full w-full"
+          src={`https://www.youtube-nocookie.com/embed/${embedId}`}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
       </div>
+      <p className="mt-3 font-body text-sm text-ivory/80">{title}</p>
     </article>
   );
 }
 
 export default function Videos() {
-  const [featured, ...rest] = VIDEOS;
-  const midpoint = Math.ceil(rest.length / 2);
-  const firstGroup = rest.slice(0, midpoint);
-  const secondGroup = rest.slice(midpoint);
-
   return (
     <div className="bg-transparent px-6 py-16 text-ivory md:py-24">
       <Seo
         title="Videos"
-        description="Watch Anna Viola music videos, live sessions, and behind-the-scenes footage."
+        description="Watch Anna Viola's official lyric video for Silver Secrets and her latest Shorts."
         path="/videos"
       />
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-5xl">
         <motion.section {...sectionReveal}>
-          <VideoCard {...featured} />
+          <VideoEmbed {...FEATURED} />
         </motion.section>
 
         <StarDivider />
 
-        <motion.section {...sectionReveal}>
-          <div className="columns-1 gap-6 md:columns-2">
-            {firstGroup.map((video) => (
-              <VideoCard key={video.id} {...video} />
+        <motion.section {...sectionReveal} aria-labelledby="shorts-heading">
+          <h2
+            id="shorts-heading"
+            className="mb-6 text-center font-display text-2xl tracking-wide text-white md:text-3xl"
+          >
+            Shorts
+          </h2>
+          <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4 md:grid-cols-3 md:gap-5">
+            {SHORTS.map((short) => (
+              <VideoEmbed key={short.embedId} {...short} vertical />
             ))}
           </div>
-        </motion.section>
 
-        <StarDivider />
-
-        <motion.section {...sectionReveal}>
-          <div className="columns-1 gap-6 md:columns-2">
-            {secondGroup.map((video) => (
-              <VideoCard key={video.id} {...video} />
-            ))}
-          </div>
+          <p className="mt-10 text-center">
+            <a
+              href={LINKS.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-shimmer inline-flex min-h-11 items-center font-body text-[13px] tracking-[0.12em] text-ivory uppercase"
+            >
+              More on YouTube →
+            </a>
+          </p>
         </motion.section>
       </div>
     </div>
