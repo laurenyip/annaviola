@@ -17,6 +17,7 @@ export const IMAGES = {
   pedestalCover: `${base}images/pedestal-cover.png`,
   rightTimeWrongPerson: `${base}images/right-time-wrong-person.png`,
   parallelLines: `${base}images/parallel-lines.png`,
+  handInCement: `${base}images/hand-in-cement.jpg`,
   logoOrnamentTop: `${base}images/logo-ornament-top.png`,
   ornamentBorderLeft: `${base}images/ornament-border-left.png`,
   ornamentBorderRight: `${base}images/ornament-border-right.png`,
@@ -38,29 +39,37 @@ export const DEBUT_EP = {
   title: "Silver Secrets",
   type: "EP",
   year: "2026",
-  releaseDate: "November 2026",
+  releaseDate: "December 4, 2026",
   description: "new album coming soon!",
   coverImage: IMAGES.cover,
   artImage: IMAGES.about,
 };
 
 export const NEXT_SINGLE = {
-  title: "Parallel Lines",
-  releaseDate: "August 21, 2026",
+  title: "Hand In Cement",
+  releaseDate: "September 25, 2026",
   description:
-    "The newest single is out now — stream Parallel Lines everywhere.",
-  href: LINKS.parallelLines,
+    "The newest single is out now — stream Hand In Cement everywhere.",
+  href: LINKS.handInCement,
   cta: "Listen",
 };
 
 export const DOCUMENTARY = {
   title: "Documentary",
-  releaseDate: "November 2026",
+  releaseDate: "December 2026",
   description:
-    "A documentary arrives this November — go behind the scenes of Anna Viola's world as the debut EP lands.",
+    "A documentary arrives this December — go behind the scenes of Anna Viola's world as the debut EP lands.",
 };
 
 export const SINGLES = [
+  {
+    title: "Hand In Cement",
+    year: "2026",
+    type: "Single",
+    image: IMAGES.handInCement,
+    href: LINKS.handInCement,
+    isNew: true,
+  },
   {
     title: "Parallel Lines",
     year: "2026",
@@ -68,7 +77,6 @@ export const SINGLES = [
     image: IMAGES.parallelLines,
     canvas: VIDEOS.parallelLines,
     href: LINKS.parallelLines,
-    isNew: true,
   },
   {
     title: "Right Time, Wrong Person",
@@ -98,6 +106,16 @@ export const SINGLES = [
 
 export const UPDATES = [
   {
+    id: "hand-in-cement",
+    date: "September 25, 2026",
+    section: "Releases",
+    headline: "Hand In Cement — Out Now",
+    dek: "The newest single is here. Stream Hand In Cement everywhere.",
+    image: IMAGES.handInCement,
+    href: LINKS.handInCement,
+    cta: "Listen",
+  },
+  {
     id: "parallel-lines",
     date: "August 21, 2026",
     section: "Releases",
@@ -108,18 +126,18 @@ export const UPDATES = [
     cta: "Listen",
   },
   {
-    id: "ep-november-2026",
-    date: "November 2026",
+    id: "ep-december-2026",
+    date: "December 4, 2026",
     section: "Releases",
     headline: "Silver Secrets — Debut EP",
-    dek: "The debut EP arrives November 2026 — poetry turned melody, silver linings wrapped in vulnerability.",
+    dek: "The debut EP arrives December 4, 2026 — poetry turned melody, silver linings wrapped in vulnerability.",
   },
   {
-    id: "documentary-nov-2026",
-    date: "November 2026",
+    id: "documentary-dec-2026",
+    date: "December 2026",
     section: "Film",
-    headline: "Documentary — Out in November",
-    dek: "A documentary arrives this November — go behind the scenes of Anna Viola's world as the debut EP lands.",
+    headline: "Documentary — Out in December",
+    dek: "A documentary arrives this December — go behind the scenes of Anna Viola's world as the debut EP lands.",
   },
 ];
 

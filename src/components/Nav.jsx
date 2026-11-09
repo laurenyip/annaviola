@@ -23,11 +23,16 @@ export default function Nav() {
 
         <PageLogo variant="light" compact />
 
-        {/* Below sm the centred logo leaves no room, so socials sit under the hero and in the footer. */}
-        <SocialLinks
-          className="-mr-2 hidden gap-1 justify-self-end sm:flex md:gap-2"
-          iconClassName="h-6 w-6 md:h-7 md:w-7"
-        />
+        <div className="flex items-center gap-3 justify-self-end sm:gap-5">
+          <NavLink to="/connect" className={({ isActive }) => linkClass(isActive)}>
+            Connect
+          </NavLink>
+          {/* Below sm the centred logo leaves no room, so socials sit under the hero and in the footer. */}
+          <SocialLinks
+            className="-mr-2 hidden gap-1 sm:flex md:gap-2"
+            iconClassName="h-6 w-6 md:h-7 md:w-7"
+          />
+        </div>
       </nav>
     </header>
   );

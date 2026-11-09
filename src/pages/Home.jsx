@@ -166,7 +166,7 @@ export default function Home() {
     <div className="newspaper-page relative min-h-svh">
       <Seo
         title="Anna Viola"
-        description={`Anna Viola — debut EP ${DEBUT_EP.title} and documentary arriving ${DEBUT_EP.releaseDate}.`}
+        description={`Anna Viola — debut EP ${DEBUT_EP.title} arrives ${DEBUT_EP.releaseDate}, with a documentary in ${DOCUMENTARY.releaseDate}.`}
         path="/"
       />
 
